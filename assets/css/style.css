@@ -14,7 +14,7 @@
     margin: 7px;
 }
 
-.game-box{
+#game-box{
     border: 1px solid black;
     width: fit-content;
     margin: auto;
@@ -35,7 +35,7 @@
 /*---------headings and buttons styling--------*/
 
 .difficulty-row{
-    position:absolute;
+    position:fixed;
     top:150px;
     left:42%;
 }
