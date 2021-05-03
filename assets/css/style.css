@@ -1,7 +1,9 @@
+/*-----general styling------*/
 .text-center{
     text-align: center;
 }
 
+/*-----game styling------*/
 .dot{
     border-radius: 50%;
     border: 1px solid black;
@@ -13,7 +15,6 @@
 }
 
 .game-box{
-    width: 70%;
     border: 1px solid black;
     width: fit-content;
     margin: auto;
@@ -23,3 +24,15 @@
     display:flex;
     flex-direction: row;
 }
+
+#game-area{
+    position: relative;
+}
+
+.difficulty-row{
+    position:absolute;
+    top:150px;
+    left:42%;
+}
+
+/*---------headings and buttons styling--------*/

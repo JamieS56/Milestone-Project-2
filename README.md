@@ -13,13 +13,25 @@ Speed dots is a game that tests the users reaction speed, on the screen you will
 ## Features
 
 ### Existing features:
+Game page
+Rules page
+Start button
+Multiple difficulties
+Email Score
 
 
 ---
 ## Technologies Used
-
+Bootstrap
+Jquery
 ---
 ## Testing
+if different browsers/ devices work
+If rules page link works and if games page links works.
+If difficulty buttons work.
+If start button works.
+If score goes up corectly.
+If email feature works.
 
 ---
 ## Deployment
