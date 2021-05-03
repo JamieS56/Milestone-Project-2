@@ -27,7 +27,12 @@
 
 #game-area{
     position: relative;
+    margin: 30px;
 }
+
+
+
+/*---------headings and buttons styling--------*/
 
 .difficulty-row{
     position:absolute;
@@ -35,4 +40,13 @@
     left:42%;
 }
 
-/*---------headings and buttons styling--------*/
+#score-box{
+    border: 1px solid black;
+    border-radius: 10%;
+    font-weight: bold;
+    width: fit-content;
+    height: fit-content;
+
+    padding: 5px;
+
+}

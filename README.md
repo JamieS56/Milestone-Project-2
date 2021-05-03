@@ -19,6 +19,10 @@ Start button
 Multiple difficulties
 Email Score
 
+### future features
+
+game countdown
+high score api
 
 ---
 ## Technologies Used
