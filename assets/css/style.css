@@ -1,4 +1,25 @@
-.dots{
-    border-radius: 25%;
-    border: black, 1px, red
+.text-center{
+    text-align: center;
+}
+
+.dot{
+    border-radius: 50%;
+    border: 1px solid black;
+    width: 100px;
+    height: 100px;
+    background-color: red;
+
+    margin: 7px;
+}
+
+.game-box{
+    width: 70%;
+    border: 1px solid black;
+    width: fit-content;
+    margin: auto;
+}
+
+.dot-row{
+    display:flex;
+    flex-direction: row;
 }
