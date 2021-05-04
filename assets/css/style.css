@@ -3,6 +3,10 @@
     text-align: center;
 }
 
+.hidden{
+    visibility: hidden;
+}
+
 /*-----game styling------*/
 .dot{
     border-radius: 50%;
@@ -34,10 +38,17 @@
 
 /*---------headings and buttons styling--------*/
 
-.difficulty-row{
+#difficulty-row{
     position:fixed;
-    top:150px;
-    left:42%;
+    top:30%;
+    left:50%;
+
+    width:400px;
+    height:100px;
+
+    margin-top: -50px;
+    margin-left: -200px;
+
 }
 
 #score-box{
