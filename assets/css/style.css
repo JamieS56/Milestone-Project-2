@@ -7,6 +7,12 @@
     visibility: hidden;
 }
 
+.sq{
+    width: 100px;
+    height: 100px;
+    background-color: blue;
+    position: relative;
+}
 /*-----game styling------*/
 .dot{
     border-radius: 50%;
@@ -16,12 +22,15 @@
     background-color: red;
 
     margin: 7px;
+
+    position: relative;
 }
 
 #game-box{
     border: 1px solid black;
     width: fit-content;
     margin: auto;
+
 }
 
 .dot-row{
