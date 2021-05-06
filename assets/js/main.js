@@ -1,71 +1,80 @@
 document.addEventListener("DOMContentLoaded", function(){
     console.log("hi DOM")
 
-    anime({
-        targets: '.sq',
-        translateX: 250
-        });
-
-
-    // this will run after difficulty is selected and choose which dot starts to shrink
+    
+    
+        // this will run after difficulty is selected and choose which dot starts to shrink
     function startGame(difficulty){
+
         console.log("game Started")
+        let dotArray
 
-        let inShrink = false
-        let easyDotArray = ["#dot-1", "#dot-2", "#dot-3", "#dot-4", "#dot-5", "#dot-6", "#dot-7", "#dot-8", "#dot-9"];
-        let mediumDotArray = [$("#dot-1"), $("#dot-2"), $("#dot-3"), $("#dot-4"), $("#dot-5"), $("#dot-6"), $("#dot-7"), $("#dot-8"), $("#dot-9"), $("#dot-10"), $("#dot-11"), $("#dot-12"), $("#dot-13"), $("#dot-14"), $("#dot-15"), $("#dot-16")];
-        let hardDotArray = [$("#dot-1"), $("#dot-2"), $("#dot-3"), $("#dot-4"), $("#dot-5"), $("#dot-6"), $("#dot-7"), $("#dot-8"), $("#dot-9"), $("#dot-10"), $("#dot-11"), $("#dot-12"), $("#dot-13"), $("#dot-14"), $("#dot-15"), $("#dot-16"), $("#dot-17"), $("#dot-18"), $("#dot-19"), $("#dot-20"), $("#dot-21"), $("#dot-22"), $("#dot-23"), $("#dot-24"), $("#dot-25")];
+        if (difficulty === 'easy'){
+            dotArray = ["#dot-1", "#dot-2", "#dot-3", "#dot-4", "#dot-5", "#dot-6", "#dot-7", "#dot-8", "#dot-9"];
+        }else if (difficulty === 'medium'){
+            dotArray = ["#dot-1", "#dot-2", "#dot-3", "#dot-4", "#dot-5", "#dot-6", "#dot-7", "#dot-8", "#dot-9", "#dot-10", "#dot-11", "#dot-12", "#dot-13", "#dot-14", "#dot-15", "#dot-16"];
+
+        }else if (difficulty === 'hard'){
+            dotArray = ["#dot-1", "#dot-2", "#dot-3", "#dot-4", "#dot-5", "#dot-6", "#dot-7", "#dot-8", "#dot-9", "#dot-10", "#dot-11", "#dot-12", "#dot-13", "#dot-14", "#dot-15", "#dot-16", "#dot-17", "#dot-18", "#dot-19", "#dot-20", "#dot-21", "#dot-22", "#dot-23", "#dot-24", "#dot-25"];
         
-        if (difficulty === "easy" && inShrink === false){
-             
-            for(let i = 0; i<9; i++){           
-                let rNumber = Math.floor(Math.random() * easyDotArray.length)
-                console.log(rNumber)
-                startShrink(easyDotArray[rNumber])
-                inShrink = true
-                easyDotArray.splice(rNumber, 1)  
-                console.log(easyDotArray) 
-            }    
-        }else if(difficulty === "medium"){
-            for(let i = 0; i<16; i++){           
-                let rNumber = Math.floor(Math.random() * mediumDotArray.length)
-                console.log(rNumber)
-                startShrink(mediumDotArray[rNumber])
-                mediumDotArray.splice(rNumber, 1)  
-                console.log(mediumDotArray) 
-            }
-
-        }else if(difficulty ==="hard"){
-            for(let i = 0; i<25; i++){           
-                let rNumber = Math.floor(Math.random() * hardDotArray.length)
-                console.log(rNumber)
-                startShrink(hardDotArray[rNumber])
-                hardDotArray.splice(rNumber, 1)  
-                console.log(hardDotArray)
-            } 
         }
+
+        dotShrink(dotArray)
+
     }
+
+
+        
       
+        
+    function dotShrink(array){
+    
+        while(array.length != 0){
+            let rNumber = Math.floor(Math.random() * array.length)
+            console.log(rNumber)               
+            startShrink(array[rNumber])              
+            array.splice(rNumber, 1)                                   
+            console.log(array) 
+                
+        }  
+    }
+
 
     function startShrink(dot) {
-        console.log("shrink")
-        console.log(dot)
-        dot.css('background-Color', 'green')
-        anime({
+
+
+        console.log(dot + 'is Shrinking')
+
+        shrink = anime({
             targets: dot,
 
             scale: {
                 value: 0,
-                duration: 6000,
+                duration: 2000,
+                delay: 400,
+                easing: 'linear'
+            },        
+        });
+    }
+  
+    function startShrink(dot) {
+        console.log("shrink")
+        console.log(dot)
+
+        shrink = anime({
+            targets: dot,
+
+            scale: {
+                value: 0,
+                duration: 2000,
                 delay: 100,
                 easing: 'linear'
-            },
+            },        
+        });
+    }
+    
 
-        })
-        inShrink = false
-
-    };
-
+      
     function stopShrink() {
 
     }
