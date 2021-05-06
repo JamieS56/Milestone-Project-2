@@ -21,43 +21,18 @@ document.addEventListener("DOMContentLoaded", function(){
 
         dotShrink(dotArray)
 
-    }
-
-
-        
-      
+    }   
         
     function dotShrink(array){
-    
-        while(array.length != 0){
-            let rNumber = Math.floor(Math.random() * array.length)
-            console.log(rNumber)               
-            startShrink(array[rNumber])              
-            array.splice(rNumber, 1)                                   
-            console.log(array) 
-                
-        }  
+        console.log(array) 
+        
+        let rNumber = Math.floor(Math.random() * array.length)//chooses the random number
+        console.log(rNumber)
+        startShrink(array[rNumber], array, rNumber)      
+                                                 
     }
 
-
-    function startShrink(dot) {
-
-
-        console.log(dot + 'is Shrinking')
-
-        shrink = anime({
-            targets: dot,
-
-            scale: {
-                value: 0,
-                duration: 2000,
-                delay: 400,
-                easing: 'linear'
-            },        
-        });
-    }
-  
-    function startShrink(dot) {
+    function startShrink(dot, array, rNumber) {
         console.log("shrink")
         console.log(dot)
 
@@ -67,10 +42,16 @@ document.addEventListener("DOMContentLoaded", function(){
             scale: {
                 value: 0,
                 duration: 2000,
-                delay: 100,
+                delay: 500,
                 easing: 'linear'
             },        
         });
+        
+        shrink.finished.then(function(){
+            if (array.length !=0){
+            array.splice(rNumber, 1)   // which 
+            dotShrink(array)
+        }})
     }
     
 
