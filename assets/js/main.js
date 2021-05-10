@@ -6,6 +6,8 @@ document.addEventListener("DOMContentLoaded", function(){
         // this will run after difficulty is selected and choose which dot starts to shrink
     function startGame(difficulty){
 
+        let score = 0
+
         console.log("game Started")
         let dotArray
 
@@ -19,22 +21,27 @@ document.addEventListener("DOMContentLoaded", function(){
         
         }
 
-        dotShrink(dotArray)
+        dotShrink(dotArray, score)
 
     }   
         
-    function dotShrink(array){
+    function dotShrink(array, score){
         console.log(array) 
         
         let rNumber = Math.floor(Math.random() * array.length)//chooses the random number
+        let dot = array[rNumber]
         console.log(rNumber)
-        startShrink(array[rNumber], array, rNumber)      
+        startShrink(dot, array, rNumber)
+
+        document.getElementById('score-box').addEventListener("click", addScore(dot, score))
+              
                                                  
     }
 
     function startShrink(dot, array, rNumber) {
         console.log("shrink")
         console.log(dot)
+        $(dot).css('backgroundColor', 'green')
 
         shrink = anime({
             targets: dot,
@@ -44,8 +51,15 @@ document.addEventListener("DOMContentLoaded", function(){
                 duration: 2000,
                 delay: 500,
                 easing: 'linear'
-            },        
+            },
+              update: function(anim) {
+                  console.log(Math.round(anim.progress))
+
+                document.getElementById('percentage').value = parseInt(Math.round(anim.progress));
+            }        
         });
+
+         document.getElementById('score-box').addEventListener("click", addScore(dot, score))
         
         shrink.finished.then(function(){
             if (array.length !=0){
@@ -60,7 +74,12 @@ document.addEventListener("DOMContentLoaded", function(){
 
     }
 
-    function addScore() {
+    function addScore(dot, score) {
+
+        console.log('score is being processed')
+
+            score = document.getElementById('percentage').value + score;
+            $('#score').text = score
 
     }
 
