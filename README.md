@@ -46,6 +46,6 @@ To run the code locally you will need to create a git hub acount, then go to my 
 
 ---
 ## Credits
-
+https://www.sitepoint.com/event-bubbling-javascript/ where i got the fix for the bubbling problem
 ---
 ## Acknowledgements 

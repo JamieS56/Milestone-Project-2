@@ -1,14 +1,17 @@
 document.addEventListener("DOMContentLoaded", function(){
     console.log("hi DOM")
 
+    $('#start-game-btn').click(function(){
+        console.log('clicked')
+        $("#game-over").addClass("hidden")
+        chooseDifficulty()})
 
-        
     
-    
-        // this will run after difficulty is selected and choose which dot starts to shrink
+
+       // this will run after difficulty is selected and choose which dot starts to shrink
     function startGame(difficulty){
 
-        let score = 0
+         $('#score').text(0)
 
         console.log("game Started")
         let dotArray
@@ -23,27 +26,29 @@ document.addEventListener("DOMContentLoaded", function(){
         
         }
 
-        dotShrink(dotArray, score)
+        dotShrink(dotArray)
 
     }   
     
     
         
     function dotShrink(array){
-        console.log(array) 
-        
+
         let rNumber = Math.floor(Math.random() * array.length)//chooses the random number
         let dot = array[rNumber]
-        console.log(rNumber)
 
-        startShrink(dot, array, rNumber)
-                                              
+        if (array.length != 0){
+            array.splice(rNumber, 1)
+            startShrink(dot, array, rNumber);
+        }
+           
+
+
+
     }
 
     function startShrink(dot, array, rNumber) {
-        console.log("shrink")
-        
-       
+   
         $(dot).css('backgroundColor', '#1BE00A')
          $(dot).addClass('active')
 
@@ -52,8 +57,8 @@ document.addEventListener("DOMContentLoaded", function(){
 
             scale: {
                 value: 0,
-                duration: 2000,
-                delay: 200,
+                duration: 1000,
+                delay: 50,
                 easing: 'linear'
             },
               update: function(anim) {
@@ -66,10 +71,16 @@ document.addEventListener("DOMContentLoaded", function(){
         $('.dot').click(dot, addScore) 
 
         shrink.finished.then(function(){
-            if (array.length !=0){
-            array.splice(rNumber, 1)
-            dotShrink(array)
-        }})
+            if (array.length !== 0){
+                dotShrink(array);
+            }else{
+            console.log('finnished')
+            $("#game-over").removeClass("hidden")
+            //$('#start-game-btn').click(chooseDifficulty())
+
+        }
+
+    })
         
     }
     
@@ -77,19 +88,13 @@ document.addEventListener("DOMContentLoaded", function(){
 
     function addScore(dot) {
 
-        
-
-        console.log('score is being processed')
-        console.log(dot.target)
-
-        if ($(dot.target).hasClass('active')){
-             console.log('success')
+        if ($(dot.target).hasClass('active')){// means only the selected green dot can add score.
 
             $(dot.target).addClass("hidden")
 
             let score = parseInt($('#score').text())
             score = parseInt(score) + Math.floor((1/parseInt($(dot.target).attr("shrinkage"))*1000))
-            console.log(Math.floor((1/parseInt($(dot.target).attr("shrinkage"))*1000)))
+            console.log("last score was " + Math.floor((1/parseInt($(dot.target).attr("shrinkage"))*1000)))
             $('#score').text(score)
             $(dot).removeClass('active')
 
@@ -100,11 +105,15 @@ document.addEventListener("DOMContentLoaded", function(){
 
    // code to set difficulty of game
 
-    document.getElementById("start-game-btn").addEventListener("click", function(){
-    $("#difficulty-row").removeClass("hidden")
-    } )
+    
+    
+    function chooseDifficulty(){
+        console.log('difficulty being chosen')
 
-    for (let i = 0; i < 3; i++) {
+    $("#difficulty-row").removeClass("hidden")
+    } 
+    let i = 0
+    for (i = 0;i < 3; i++) {
         document.getElementsByClassName("difficulty-button")[i].addEventListener("click", function() {
             let difficulty = this.value
             console.log(difficulty);
@@ -112,35 +121,35 @@ document.addEventListener("DOMContentLoaded", function(){
                 document.getElementById("game-box").innerHTML= 
             `<row class = "dot-row">
                <col>
-               <div id="dot-1" value = "0" class = "dot"></div>
+               <div id="dot-1" class = "dot"></div>
                </col>
                <col>
-               <div id="dot-2" value = "0" class = "dot"></div>
+               <div id="dot-2" class = "dot"></div>
                </col>
                <col>
-               <div id="dot-3" value = "0" class = "dot"></div>
-               </col>
-            </row>
-            <row class = "dot-row">
-               <col>
-               <div id="dot-4" value = "0" class = "dot"></div>
-               </col>
-               <col>
-               <div id="dot-5" value = "0" class = "dot"></div>
-               </col>
-               <col>
-               <div id="dot-6" value = "0" class = "dot"></div>
+               <div id="dot-3" class = "dot"></div>
                </col>
             </row>
             <row class = "dot-row">
                <col>
-               <div id="dot-7" value = "0" class = "dot"></div>
+               <div id="dot-4" class = "dot"></div>
                </col>
                <col>
-               <div id="dot-8" value = "0" class = "dot"></div>
+               <div id="dot-5" class = "dot"></div>
                </col>
                <col>
-               <div id="dot-9" value = "0" class = "dot"></div>
+               <div id="dot-6" class = "dot"></div>
+               </col>
+            </row>
+            <row class = "dot-row">
+               <col>
+               <div id="dot-7" class = "dot"></div>
+               </col>
+               <col>
+               <div id="dot-8" class = "dot"></div>
+               </col>
+               <col>
+               <div id="dot-9" class = "dot"></div>
                </col>
             </row>`;
 
@@ -165,7 +174,7 @@ document.addEventListener("DOMContentLoaded", function(){
                <div id="dot-5" class = "dot"></div>
                </col>
                <col>
-               <div id="dot6" class = "dot"></div>
+               <div id="dot-6" class = "dot"></div>
                </col>
                <col>
                <div id="dot-7" class = "dot"></div>
