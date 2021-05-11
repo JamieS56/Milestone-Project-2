@@ -24,8 +24,17 @@ document.addEventListener("DOMContentLoaded", function(){
         dotShrink(dotArray, score)
 
     }   
+    
+    function chooseDot(){
+
+        let rNumber = Math.floor(Math.random() * array.length)//chooses the random number
+        let dot = array[rNumber]
+
+        return dot
+
+    }
         
-    function dotShrink(array, score){
+    function dotShrink(array,){
         console.log(array) 
         
         let rNumber = Math.floor(Math.random() * array.length)//chooses the random number
@@ -36,8 +45,8 @@ document.addEventListener("DOMContentLoaded", function(){
 
     function startShrink(dot, array, rNumber) {
         console.log("shrink")
-        $(dot).css('backgroundColor', 'green')
-
+        $(dot).css('backgroundColor', '#1BE00A')
+         $(dot).addClass('active')
 
         shrink = anime({
             targets: dot,
@@ -49,14 +58,13 @@ document.addEventListener("DOMContentLoaded", function(){
                 easing: 'linear'
             },
               update: function(anim) {
-                console.log(Math.round(anim.progress))
 
                 $(dot).attr('shrinkage', parseInt(Math.round(anim.progress)));
             }        
         });
 
 
-        $('.dot').click(addScore)
+        $('.dot').click(dot, addScore)
 
         shrink.finished.then(function(){
             if (array.length !=0){
@@ -66,26 +74,26 @@ document.addEventListener("DOMContentLoaded", function(){
     }
     
 
-    function addScore() {
+    function addScore(dot) {
+
+
 
         console.log('score is being processed')
+        
+        if ($(dot).hasClass("active")){
 
-            if (this.css("background-color") === green){
+            console.log('success')
 
-                this.addClass("hidden")
+            $(dot).addClass("hidden")
 
-                let score = parseInt($('#score').text())
-                score = score + (this.attr("shrinkage")/100 - 1)
-                $('#score').text(score)
+            let score = parseInt($('#score').text())
+            score = score + ($(dot).attr("shrinkage"))
+            $('#score').text(score)
 
-            }
-
-
-    }
-
+         }  }
 
 
-    // code to set difficulty of game
+   // code to set difficulty of game
 
     document.getElementById("start-game-btn").addEventListener("click", function(){
     $("#difficulty-row").removeClass("hidden")
