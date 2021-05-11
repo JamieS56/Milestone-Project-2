@@ -31,17 +31,13 @@ document.addEventListener("DOMContentLoaded", function(){
         let rNumber = Math.floor(Math.random() * array.length)//chooses the random number
         let dot = array[rNumber]
         console.log(rNumber)
-        startShrink(dot, array, rNumber)
-
-        document.getElementById('score-box').addEventListener("click", addScore(dot, score))
-              
-                                                 
+        startShrink(dot, array, rNumber)                                       
     }
 
     function startShrink(dot, array, rNumber) {
         console.log("shrink")
-        console.log(dot)
         $(dot).css('backgroundColor', 'green')
+
 
         shrink = anime({
             targets: dot,
@@ -53,35 +49,41 @@ document.addEventListener("DOMContentLoaded", function(){
                 easing: 'linear'
             },
               update: function(anim) {
-                  console.log(Math.round(anim.progress))
+                console.log(Math.round(anim.progress))
 
-                document.getElementById('percentage').value = parseInt(Math.round(anim.progress));
+                $(dot).attr('shrinkage', parseInt(Math.round(anim.progress)));
             }        
         });
 
-         document.getElementById('score-box').addEventListener("click", addScore(dot, score))
-        
+
+        $('.dot').click(addScore)
+
         shrink.finished.then(function(){
             if (array.length !=0){
-            array.splice(rNumber, 1)   // which 
+            array.splice(rNumber, 1)
             dotShrink(array)
         }})
     }
     
 
-      
-    function stopShrink() {
-
-    }
-
-    function addScore(dot, score) {
+    function addScore() {
 
         console.log('score is being processed')
 
-            score = document.getElementById('percentage').value + score;
-            $('#score').text = score
+            if (this.css("background-color") === green){
+
+                this.addClass("hidden")
+
+                let score = parseInt($('#score').text())
+                score = score + (this.attr("shrinkage")/100 - 1)
+                $('#score').text(score)
+
+            }
+
 
     }
+
+
 
     // code to set difficulty of game
 
@@ -97,35 +99,35 @@ document.addEventListener("DOMContentLoaded", function(){
                 document.getElementById("game-box").innerHTML= 
             `<row class = "dot-row">
                <col>
-               <div id="dot-1" class = "dot"></div>
+               <div id="dot-1" value = "0" class = "dot"></div>
                </col>
                <col>
-               <div id="dot-2" class = "dot"></div>
+               <div id="dot-2" value = "0" class = "dot"></div>
                </col>
                <col>
-               <div id="dot-3" class = "dot"></div>
-               </col>
-            </row>
-            <row class = "dot-row">
-               <col>
-               <div id="dot-4" class = "dot"></div>
-               </col>
-               <col>
-               <div id="dot-5" class = "dot"></div>
-               </col>
-               <col>
-               <div id="dot-6" class = "dot"></div>
+               <div id="dot-3" value = "0" class = "dot"></div>
                </col>
             </row>
             <row class = "dot-row">
                <col>
-               <div id="dot-7" class = "dot"></div>
+               <div id="dot-4" value = "0" class = "dot"></div>
                </col>
                <col>
-               <div id="dot-8" class = "dot"></div>
+               <div id="dot-5" value = "0" class = "dot"></div>
                </col>
                <col>
-               <div id="dot-9" class = "dot"></div>
+               <div id="dot-6" value = "0" class = "dot"></div>
+               </col>
+            </row>
+            <row class = "dot-row">
+               <col>
+               <div id="dot-7" value = "0" class = "dot"></div>
+               </col>
+               <col>
+               <div id="dot-8" value = "0" class = "dot"></div>
+               </col>
+               <col>
+               <div id="dot-9" value = "0" class = "dot"></div>
                </col>
             </row>`;
 
