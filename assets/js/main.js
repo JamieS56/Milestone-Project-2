@@ -25,14 +25,6 @@ document.addEventListener("DOMContentLoaded", function(){
 
     }   
     
-    function chooseDot(){
-
-        let rNumber = Math.floor(Math.random() * array.length)//chooses the random number
-        let dot = array[rNumber]
-
-        return dot
-
-    }
         
     function dotShrink(array,){
         console.log(array) 
@@ -45,6 +37,8 @@ document.addEventListener("DOMContentLoaded", function(){
 
     function startShrink(dot, array, rNumber) {
         console.log("shrink")
+        
+       
         $(dot).css('backgroundColor', '#1BE00A')
          $(dot).addClass('active')
 
@@ -76,18 +70,16 @@ document.addEventListener("DOMContentLoaded", function(){
 
     function addScore(dot) {
 
-
-
         console.log('score is being processed')
-        
-        if ($(dot).hasClass("active")){
+        console.log(dot.target)
 
-            console.log('success')
+        if ($(dot.target).hasClass('active')){
+             console.log('success')
 
-            $(dot).addClass("hidden")
+            $(dot.target).addClass("hidden")
 
             let score = parseInt($('#score').text())
-            score = score + ($(dot).attr("shrinkage"))
+            score = score + ($(dot.target).attr("shrinkage"))
             $('#score').text(score)
 
          }  }
