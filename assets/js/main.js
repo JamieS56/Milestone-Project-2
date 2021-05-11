@@ -1,6 +1,8 @@
 document.addEventListener("DOMContentLoaded", function(){
     console.log("hi DOM")
 
+
+        
     
     
         // this will run after difficulty is selected and choose which dot starts to shrink
@@ -25,14 +27,17 @@ document.addEventListener("DOMContentLoaded", function(){
 
     }   
     
+    
         
-    function dotShrink(array,){
+    function dotShrink(array){
         console.log(array) 
         
         let rNumber = Math.floor(Math.random() * array.length)//chooses the random number
         let dot = array[rNumber]
         console.log(rNumber)
-        startShrink(dot, array, rNumber)                                       
+
+        startShrink(dot, array, rNumber)
+                                              
     }
 
     function startShrink(dot, array, rNumber) {
@@ -48,7 +53,7 @@ document.addEventListener("DOMContentLoaded", function(){
             scale: {
                 value: 0,
                 duration: 2000,
-                delay: 500,
+                delay: 200,
                 easing: 'linear'
             },
               update: function(anim) {
@@ -58,17 +63,21 @@ document.addEventListener("DOMContentLoaded", function(){
         });
 
 
-        $('.dot').click(dot, addScore)
+        $('.dot').click(dot, addScore) 
 
         shrink.finished.then(function(){
             if (array.length !=0){
             array.splice(rNumber, 1)
             dotShrink(array)
         }})
+        
     }
     
 
+
     function addScore(dot) {
+
+        
 
         console.log('score is being processed')
         console.log(dot.target)
@@ -79,10 +88,13 @@ document.addEventListener("DOMContentLoaded", function(){
             $(dot.target).addClass("hidden")
 
             let score = parseInt($('#score').text())
-            score = score + ($(dot.target).attr("shrinkage"))
+            score = parseInt(score) + parseInt($(dot.target).attr("shrinkage"))
             $('#score').text(score)
+            $(dot).removeClass('active')
 
-         }  }
+         } 
+        dot.stopImmediatePropagation()
+     }
 
 
    // code to set difficulty of game
