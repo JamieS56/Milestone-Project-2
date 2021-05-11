@@ -88,7 +88,8 @@ document.addEventListener("DOMContentLoaded", function(){
             $(dot.target).addClass("hidden")
 
             let score = parseInt($('#score').text())
-            score = parseInt(score) + parseInt($(dot.target).attr("shrinkage"))
+            score = parseInt(score) + Math.floor((1/parseInt($(dot.target).attr("shrinkage"))*1000))
+            console.log(Math.floor((1/parseInt($(dot.target).attr("shrinkage"))*1000)))
             $('#score').text(score)
             $(dot).removeClass('active')
 
