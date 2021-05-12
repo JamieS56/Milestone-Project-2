@@ -1,10 +1,18 @@
 document.addEventListener("DOMContentLoaded", function(){
     console.log("hi DOM")
+    let inGame = false
 
     $('#start-game-btn').click(function(){
         console.log('clicked')
-        $("#game-over").addClass("hidden")
-        chooseDifficulty()})
+        if (inGame === false){
+            inGame = true
+            $("#game-over").addClass("hidden")
+            chooseDifficulty()
+            
+        }
+    })
+        
+
 
     
 
@@ -76,7 +84,7 @@ document.addEventListener("DOMContentLoaded", function(){
             }else{
             console.log('finnished')
             $("#game-over").removeClass("hidden")
-            //$('#start-game-btn').click(chooseDifficulty())
+            inGame = false
 
         }
 
