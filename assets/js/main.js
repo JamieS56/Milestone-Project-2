@@ -58,7 +58,7 @@ document.addEventListener("DOMContentLoaded", function(){
             scale: {
                 value: 0,
                 duration: 500,
-                delay: 50,
+                //delay: 50,
                 easing: 'linear'
             },
               update: function(anim) {

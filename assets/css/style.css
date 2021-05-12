@@ -1,3 +1,4 @@
+
 /*-----general styling------*/
 .text-center{
     text-align: center;
@@ -7,12 +8,11 @@
     visibility: hidden;
 }
 
-.sq{
-    width: 100px;
-    height: 100px;
-    background-color: blue;
-    position: relative;
+h1{
+    font-family: 'Oswald', sans-serif;
+    padding-top: 20px;
 }
+
 /*-----game styling------*/
 .dot{
     border-radius: 50%;
@@ -47,10 +47,7 @@
 
 /*---------headings and buttons styling--------*/
 
-#difficulty-row{
-    position: absolute;
-    width: 400px;
-}
+
 
 #score-box{
     border: 1px solid black;
@@ -58,20 +55,22 @@
     font-weight: bold;
     width: fit-content;
     height: fit-content;
-
     padding: 5px;
+    font-family: 'Amatic SC', cursive;
+    font-size: 30px;
 
 }
 
 #game-over{
-position: fixed;
+    position: fixed;
     position: absolute;
     width: 10em;
     background-color: aliceblue;
     font-weight: bold;
     border: 1px solid black;
     border-radius: 15%;
-    font-size: 30px;
+    font-size: 40px;
+    font-family: 'Amatic SC', cursive;
 }
 
 #game-window{
@@ -79,3 +78,43 @@ position: fixed;
     align-items: center;
     justify-content: center;
 }
+
+#difficulty-row{
+    position: absolute;
+    width: fit-content;
+}
+
+
+
+.btn{
+    font-family: 'Amatic SC', cursive;
+    font-size: 30px;
+    margin-bottom: 14px;
+    padding: 5px 10px;
+    margin-right: 70px;
+    border: 1px solid black;
+    background-color: white;
+    color: black;
+}
+
+.difficulty-button{
+    margin: 10px;
+    width: 90px;
+
+}
+
+.btn:focus{
+    box-shadow: none;
+}
+
+.btn:hover{
+    border:2px solid black;
+}
+
+
+
+
+
+
+
+
