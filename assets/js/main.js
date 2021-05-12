@@ -4,20 +4,22 @@ const NO_OF_DOTS_BY_LEVEL = {
   medium: 16,
   hard: 25
 }
-// Add comment
+// When the start button gets clicked this function is called which checks if a game is currently in progress and shows up the difficulty UI.
 function addStartButtonClickHandler() {
   $('#start-game-btn').click(function(){
     console.log('clicked')
     if (isGameInProgress === false){
-      inGame = true
+      isGameInProgress = true
       $("#game-over").addClass("hidden")
       showDifficultUI()
     }
   })
 }
+//sets the score
 function setScore(score) {
   $('#score').text(score);
 }
+//this function generates the array of dots depending on the difficulty using the constant at the top of the page and difficulty put into it.
 function generateDots(difficulty) {
   const noOfDots = NO_OF_DOTS_BY_LEVEL[difficulty];
   let dotsArray = [];
@@ -26,7 +28,7 @@ function generateDots(difficulty) {
   }
   return dotsArray;
 }
-// this will run after difficulty is selected and choose which dot starts to shrink
+// this will run after difficulty is selected and choose which dot starts to shrink.
 function startGame(difficulty){
   setScore(0);
   let dotsArray = generateDots(difficulty);
@@ -63,7 +65,7 @@ function startShrink(dot, dotArray, rNumber) {
       checkForDotsAndShrink(dotArray);
     }else{
       $("#game-over").removeClass("hidden")
-      inGame = false
+      isGameInProgress = false
     }
   })
 }
@@ -90,18 +92,18 @@ function generateDotsHTML(difficulty) {
   let dotCounter = 1;
   let dotsHTML = '';
   for (let row = 1; row <= noOfRows; row++) {
-    dotsHTML += `<row class = "dot-row">`;
+    dotsHTML += `<div class = "row dot-row">`;
     for (let col = 1; col <= noOfCols; col++) {
       dotsHTML +=
-      `<col>
-      <div id="dot-${dotCounter}" class="dot"></div>
-      </col>`;
+      `<div id="dot-${dotCounter}" class="col dot"></div> `;
       dotCounter++;
     }
-    dotsHTML += "</row>";
+    dotsHTML += "</div>";
   }
   return dotsHTML;
 }
+
+
 document.addEventListener("DOMContentLoaded", function () {
   addStartButtonClickHandler();
   for (i = 0; i < 3; i++) {

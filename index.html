@@ -16,65 +16,46 @@
       <div>
          <h1 class = "text-center">Speed Dots</h1>
       </div>
-      <div id = 'game-window'>
+    <div id = 'game-window'>
       <section id = "game-area">
-         <div id = "game-box">
-            <row class = "dot-row">
-               <col>
-               <div id="dot-1" value = "0" class = "dot"></div>
-               </col>
-               <col>
-               <div id="dot-2" value = "0" class = "dot"></div>
-               </col>
-               <col>
-               <div id="dot-3" value = "0" class = "dot"></div>
-               </col>
-            </row>
-            <row class = "dot-row">
-               <col>
-               <div id="dot-4" value = "0" class = "dot"></div>
-               </col>
-               <col>
-               <div id="dot-5" value = "0" class = "dot"></div>
-               </col>
-               <col>
-               <div id="dot-6" value = "0" class = "dot"></div>
-               </col>
-            </row>
-            <row class = "dot-row">
-               <col>
-               <div id="dot-7" value = "0" class = "dot"></div>
-               </col>
-               <col>
-               <div id="dot-8" value = "0" class = "dot"></div>
-               </col>
-               <col>
-               <div id="dot-9" value = "0" class = "dot"></div>
-               </col>
-            </row>
+         <div id = "game-box" class = "container">
+            <div class = "dot-row row">
+               <div id="dot-1" class = "dot col"></div>
+               <div id="dot-2" class = "dot col"></div>
+               <div id="dot-3" class = "dot col"></div>
+               </div>
+            <div class = "dot-row row">
+               <div id="dot-4" class = "dot col"></div>
+               <div id="dot-5" class = "dot col"></div>
+               <div id="dot-6" class = "dot col"></div>
+            </div>
+            <div class = "dot-row row">
+               <div id="dot-7" class = "dot col"></div>
+               <div id="dot-8" class = "dot col"></div>
+               <div id="dot-9" class = "dot col"></div>
+            </div>
 
 
       </section>
-               <div id ="difficulty-row" class ="hidden">
-         <row>
-            <button class = "difficulty-button btn btn-outline-success" id = "easy-button" value = "easy">Easy</button>
-            <button class = "difficulty-button btn btn-outline-warning" id = "medium-button" value = "medium">Medium</button>
-            <button class = "difficulty-button btn btn-outline-danger" id = "hard-button" value = "hard">Hard</button>
-         </row>
-         
+        <div id ="difficulty-row" class ="row hidden">
+        
+            <button class = "col difficulty-button btn btn-outline-success" id = "easy-button" value = "easy">Easy</button>
+            <button class = "col difficulty-button btn btn-outline-warning" id = "medium-button" value = "medium">Medium</button>
+            <button class = "col difficulty-button btn btn-outline-danger" id = "hard-button" value = "hard">Hard</button>
+                 
          </div>
 
-         <div id='game-over' class = 'hidden' > Game Over!</div>
-    </div>
+         <div id='game-over' class = 'col hidden' > Game Over!</div>
+        </div>
 
-    <row id = 'action-row'>
-        <button class = "btn btn-outline-success" id = "start-game-btn">Start</button>
-            <a class = "btn btn-outline-success" id = "rules-link" href = 'rules.html' target = '_blank'>Rules!</a>
+    <div id = 'row action-row'>
+        <button class = "col sm-col-4 btn btn-outline-success" id = "start-game-btn">Start</button>
+            <a class = "col sm-col-4 btn btn-outline-success" id = "rules-link" href = 'rules.html' target = '_blank'>Rules!</a>
 
-        <label id="score-box">Score:
+        <label id="score-box" class = "col sm-col-4">Score:
             <span id="score">0</span>
         </label>
-    </row>
+    </div>
 
     
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
