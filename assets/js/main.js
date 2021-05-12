@@ -1,322 +1,116 @@
-document.addEventListener("DOMContentLoaded", function(){
-    console.log("hi DOM")
-    let inGame = false
-
-    $('#start-game-btn').click(function(){
-        console.log('clicked')
-        if (inGame === false){
-            inGame = true
-            $("#game-over").addClass("hidden")
-            chooseDifficulty()
-            
-        }
-    })
-        
-
-
-    
-
-       // this will run after difficulty is selected and choose which dot starts to shrink
-    function startGame(difficulty){
-
-         $('#score').text(0)
-
-        console.log("game Started")
-        let dotArray
-
-        if (difficulty === 'easy'){
-            dotArray = ["#dot-1", "#dot-2", "#dot-3", "#dot-4", "#dot-5", "#dot-6", "#dot-7", "#dot-8", "#dot-9"];
-        }else if (difficulty === 'medium'){
-            dotArray = ["#dot-1", "#dot-2", "#dot-3", "#dot-4", "#dot-5", "#dot-6", "#dot-7", "#dot-8", "#dot-9", "#dot-10", "#dot-11", "#dot-12", "#dot-13", "#dot-14", "#dot-15", "#dot-16"];
-
-        }else if (difficulty === 'hard'){
-            dotArray = ["#dot-1", "#dot-2", "#dot-3", "#dot-4", "#dot-5", "#dot-6", "#dot-7", "#dot-8", "#dot-9", "#dot-10", "#dot-11", "#dot-12", "#dot-13", "#dot-14", "#dot-15", "#dot-16", "#dot-17", "#dot-18", "#dot-19", "#dot-20", "#dot-21", "#dot-22", "#dot-23", "#dot-24", "#dot-25"];
-        
-        }
-
-        dotShrink(dotArray)
-
-    }   
-    
-    
-        
-    function dotShrink(array){
-
-        let rNumber = Math.floor(Math.random() * array.length)//chooses the random number
-        let dot = array[rNumber]
-
-        if (array.length != 0){
-            array.splice(rNumber, 1)
-            startShrink(dot, array, rNumber);
-        }
-           
-
-
-
+let isGameInProgress = false
+const NO_OF_DOTS_BY_LEVEL = {
+  easy: 9,
+  medium: 16,
+  hard: 25
+}
+// Add comment
+function addStartButtonClickHandler() {
+  $('#start-game-btn').click(function(){
+    console.log('clicked')
+    if (isGameInProgress === false){
+      inGame = true
+      $("#game-over").addClass("hidden")
+      showDifficultUI()
     }
-
-    function startShrink(dot, array, rNumber) {
-   
-        $(dot).css('backgroundColor', '#1BE00A')
-
-        shrink = anime({
-            targets: dot,
-
-            scale: {
-                value: 0,
-                duration: 2000,
-                delay: 50,
-                easing: 'linear'
-            },
-              update: function(anim) {
-
-                $(dot).attr('shrinkage', parseInt(Math.floor(anim.progress)));
-            },
-            begin: function(anim){
-                $(dot).attr('begun', anim.began)
-            }        
-        });
-
-
-        $('.dot').click(dot, addScore) 
-
-        shrink.finished.then(function(){
-            if (array.length !== 0){
-                dotShrink(array);
-            }else{
-            console.log('finnished')
-            $("#game-over").removeClass("hidden")
-            inGame = false
-
-        }
-
-    })
-        
+  })
+}
+function setScore(score) {
+  $('#score').text(score);
+}
+function generateDots(difficulty) {
+  const noOfDots = NO_OF_DOTS_BY_LEVEL[difficulty];
+  let dotsArray = [];
+  for(let i=1; i<=noOfDots;i++) {
+    dotsArray.push(`#dot-${i}`);
+  }
+  return dotsArray;
+}
+// this will run after difficulty is selected and choose which dot starts to shrink
+function startGame(difficulty){
+  setScore(0);
+  let dotsArray = generateDots(difficulty);
+  checkForDotsAndShrink(dotsArray)
+}
+function checkForDotsAndShrink(dotArray){
+  let rNumber = Math.floor(Math.random() * dotArray.length)//chooses the random number
+  let dot = dotArray[rNumber]
+  if (dotArray.length != 0){
+    dotArray.splice(rNumber, 1)
+    startShrink(dot, dotArray, rNumber);
+  }
+}
+function startShrink(dot, dotArray, rNumber) {
+  $(dot).css('backgroundColor', '#1BE00A')
+  shrink = anime({
+    targets: dot,
+    scale: {
+      value: 0,
+      duration: 2000,
+      delay: 50,
+      easing: 'linear'
+    },
+    update: function(anim) {
+      $(dot).attr('shrinkage', parseInt(Math.floor(anim.progress)));
+    },
+    begin: function(anim){
+      $(dot).attr('begun', anim.began)
     }
-    
-
-
-    function addScore(dot) {
-        console.log($(dot.target).attr('begun'))
-
-        if ($(dot.target).attr('begun') == 'true'){// means only the dot that is in the animation will score.
-
-            $(dot.target).addClass("hidden")
-
-            let score = parseInt($('#score').text())
-            score = parseInt(score) + Math.floor((1/parseInt($(dot.target).attr("shrinkage"))*1000))
-            console.log("last score was " + Math.floor((1/parseInt($(dot.target).attr("shrinkage"))*1000)))
-            $('#score').text(score)
-            $(dot).removeClass('active')
-
-         } 
-        dot.stopImmediatePropagation()
-     }
-
-
-   // code to set difficulty of game
-
-    
-    
-    function chooseDifficulty(){
-        console.log('difficulty being chosen')
-
-    $("#difficulty-row").removeClass("hidden")
-    } 
-    let i = 0
-    for (i = 0;i < 3; i++) {
-        document.getElementsByClassName("difficulty-button")[i].addEventListener("click", function() {
-            let difficulty = this.value
-            console.log(difficulty);
-            if (difficulty === "easy") {
-                document.getElementById("game-box").innerHTML= 
-            `<row class = "dot-row">
-               <col>
-               <div id="dot-1" class = "dot"></div>
-               </col>
-               <col>
-               <div id="dot-2" class = "dot"></div>
-               </col>
-               <col>
-               <div id="dot-3" class = "dot"></div>
-               </col>
-            </row>
-            <row class = "dot-row">
-               <col>
-               <div id="dot-4" class = "dot"></div>
-               </col>
-               <col>
-               <div id="dot-5" class = "dot"></div>
-               </col>
-               <col>
-               <div id="dot-6" class = "dot"></div>
-               </col>
-            </row>
-            <row class = "dot-row">
-               <col>
-               <div id="dot-7" class = "dot"></div>
-               </col>
-               <col>
-               <div id="dot-8" class = "dot"></div>
-               </col>
-               <col>
-               <div id="dot-9" class = "dot"></div>
-               </col>
-            </row>`;
-
-            }else if(difficulty ==="medium"){
-                 document.getElementById("game-box").innerHTML = 
-            `<row class = "dot-row">
-                <col>
-               <div id="dot-1" class = "dot"></div>
-               </col>
-               <col>
-               <div id="dot-2" class = "dot"></div>
-               </col>
-               <col>
-               <div id="dot-3" class = "dot"></div>
-               </col>
-                <col>
-               <div id="dot-4" class = "dot"></div>
-               </col>
-            </row>
-            <row class = "dot-row">
-                <col>
-               <div id="dot-5" class = "dot"></div>
-               </col>
-               <col>
-               <div id="dot-6" class = "dot"></div>
-               </col>
-               <col>
-               <div id="dot-7" class = "dot"></div>
-               </col>
-                <col>
-               <div id="dot-8" class = "dot"></div>
-               </col>
-            </row>
-            <row class = "dot-row">
-                <col>
-               <div id="dot-9" class = "dot"></div>
-               </col>
-               <col>
-               <div id="dot-10" class = "dot"></div>
-               </col>
-               <col>
-               <div id="dot-11" class = "dot"></div>
-               </col>
-                <col>
-               <div id="dot-12" class = "dot"></div>
-               </col>
-            </row>
-            <row class = "dot-row">
-                <col>
-               <div id="dot-13" class = "dot"></div>
-               </col>
-               <col>
-               <div id="dot-14" class = "dot"></div>
-               </col>
-               <col>
-               <div id="dot-15" class = "dot"></div>
-               </col>
-                <col>
-               <div id="dot-16" class = "dot"></div>
-               </col>
-            </row>`;
-            }else if(difficulty ==="hard"){
-                 document.getElementById("game-box").innerHTML = 
-                 `<row class = "dot-row">
-                <col>
-               <div id="dot-1" class = "dot"></div>
-               </col>
-               <col>
-               <div id="dot-2" class = "dot"></div>
-               </col>
-               <col>
-               <div id="dot-3" class = "dot"></div>
-               </col>
-                <col>
-               <div id="dot-4" class = "dot"></div>
-               </col>
-                <col>
-               <div id="dot-5" class = "dot"></div>
-               </col>
-            </row>
-            <row class = "dot-row">
-                <col>
-               <div id="dot-6" class = "dot"></div>
-               </col>
-               <col>
-               <div id="dot-7" class = "dot"></div>
-               </col>
-               <col>
-               <div id="dot-8" class = "dot"></div>
-               </col>
-                <col>
-               <div id="dot-9" class = "dot"></div>
-               </col>
-                <col>
-               <div id="dot-10" class = "dot"></div>
-               </col>
-            </row>
-            <row class = "dot-row">
-                <col>
-               <div id="dot-11" class = "dot"></div>
-               </col>
-               <col>
-               <div id="dot-12" class = "dot"></div>
-               </col>
-               <col>
-               <div id="dot-13" class = "dot"></div>
-               </col>
-                <col>
-               <div id="dot-14" class = "dot"></div>
-               </col>
-                <col>
-               <div id="dot-15" class = "dot"></div>
-               </col>
-            </row>
-            <row class = "dot-row">
-                <col>
-               <div id="dot-16" class = "dot"></div>
-               </col>
-               <col>
-               <div id="dot-17" class = "dot"></div>
-               </col>
-               <col>
-               <div id="dot-18" class = "dot"></div>
-               </col>
-                <col>
-               <div id="dot-19" class = "dot"></div>
-               </col>
-                <col>
-               <div id="dot-20" class = "dot"></div>
-               </col>
-            </row>
-            <row class = "dot-row">
-                <col>
-               <div id="dot-21" class = "dot"></div>
-               </col>
-               <col>
-               <div id="dot-22" class = "dot"></div>
-               </col>
-               <col>
-               <div id="dot-23" class = "dot"></div>
-               </col>
-                <col>
-               <div id="dot-24" class = "dot"></div>
-               </col>
-                <col>
-               <div id="dot-25" class = "dot"></div>
-               </col>
-            </row>`
-            
-        }
-        $("#difficulty-row").addClass("hidden")
-        startGame(difficulty)
-
-        })
-
-        
+  });
+  $('.dot').click(dot, onDotClick)
+  shrink.finished.then(function(){
+    if (dotArray.length !== 0){
+      checkForDotsAndShrink(dotArray);
+    }else{
+      $("#game-over").removeClass("hidden")
+      inGame = false
     }
-
-})
+  })
+}
+function calculateScoreForDot(dot) {
+  return Math.floor((1/parseInt($(dot.target).attr("shrinkage"))*1000))
+}
+function onDotClick(dot) {
+  if ($(dot.target).attr('begun') == 'true'){// means only the dot that is in the animation will score.
+    // Hide the dot
+    $(dot.target).addClass("hidden")
+    let newScore = parseInt($('#score').text()) + calculateScoreForDot(dot);
+    setScore(newScore)
+  }
+  dot.stopImmediatePropagation()
+}
+// code to set difficulty of game
+function showDifficultUI(){
+  $("#difficulty-row").removeClass("hidden")
+}
+function generateDotsHTML(difficulty) {
+  const noOfDots = NO_OF_DOTS_BY_LEVEL[difficulty];
+  const noOfRows = Math.sqrt(noOfDots);
+  const noOfCols = Math.sqrt(noOfDots);
+  let dotCounter = 1;
+  let dotsHTML = '';
+  for (let row = 1; row <= noOfRows; row++) {
+    dotsHTML += `<row class = "dot-row">`;
+    for (let col = 1; col <= noOfCols; col++) {
+      dotsHTML +=
+      `<col>
+      <div id="dot-${dotCounter}" class="dot"></div>
+      </col>`;
+      dotCounter++;
+    }
+    dotsHTML += "</row>";
+  }
+  return dotsHTML;
+}
+document.addEventListener("DOMContentLoaded", function () {
+  addStartButtonClickHandler();
+  for (i = 0; i < 3; i++) {
+    document.getElementsByClassName("difficulty-button")[i].addEventListener("click", function () {
+      let difficulty = this.value;
+      const dotsHTML = generateDotsHTML(difficulty);
+      document.getElementById("game-box").innerHTML = dotsHTML;
+      $("#difficulty-row").addClass("hidden");
+      startGame(difficulty);
+    });
+  }
+});
