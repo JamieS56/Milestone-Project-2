@@ -58,20 +58,22 @@ document.addEventListener("DOMContentLoaded", function(){
     function startShrink(dot, array, rNumber) {
    
         $(dot).css('backgroundColor', '#1BE00A')
-         $(dot).addClass('active')
 
         shrink = anime({
             targets: dot,
 
             scale: {
                 value: 0,
-                duration: 500,
-                //delay: 50,
+                duration: 2000,
+                delay: 50,
                 easing: 'linear'
             },
               update: function(anim) {
 
-                $(dot).attr('shrinkage', parseInt(Math.round(anim.progress)));
+                $(dot).attr('shrinkage', parseInt(Math.floor(anim.progress)));
+            },
+            begin: function(anim){
+                $(dot).attr('begun', anim.began)
             }        
         });
 
@@ -95,8 +97,9 @@ document.addEventListener("DOMContentLoaded", function(){
 
 
     function addScore(dot) {
+        console.log($(dot.target).attr('begun'))
 
-        if ($(dot.target).hasClass('active')){// means only the selected green dot can add score.
+        if ($(dot.target).attr('begun') == 'true'){// means only the dot that is in the animation will score.
 
             $(dot.target).addClass("hidden")
 

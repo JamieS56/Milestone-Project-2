@@ -112,7 +112,17 @@ h1{
 }
 
 
+/*-----------------rules.html---------------*/
 
+#rules-circle{
+    border-radius: 50%;
+    border: 1px solid black;
+    width: 500px;
+    height: 500px;
+    background-color: red;
+    color: white;
+
+}
 
 
 
