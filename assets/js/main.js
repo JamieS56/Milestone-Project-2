@@ -57,7 +57,7 @@ document.addEventListener("DOMContentLoaded", function(){
 
             scale: {
                 value: 0,
-                duration: 1000,
+                duration: 500,
                 delay: 50,
                 easing: 'linear'
             },

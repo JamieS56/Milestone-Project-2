@@ -48,16 +48,8 @@
 /*---------headings and buttons styling--------*/
 
 #difficulty-row{
-    position:fixed;
-    top:30%;
-    left:50%;
-
-    width:400px;
-    height:100px;
-
-    margin-top: -50px;
-    margin-left: -200px;
-
+    position: absolute;
+    width: 400px;
 }
 
 #score-box{
@@ -73,15 +65,17 @@
 
 #game-over{
 position: fixed;
-    top: 28%;
-    left: 54%;
-    width: 300px;
-    height: 50px;
-    margin-top: -50px;
-    margin-left: -200px;
+    position: absolute;
+    width: 10em;
     background-color: aliceblue;
     font-weight: bold;
     border: 1px solid black;
     border-radius: 15%;
     font-size: 30px;
+}
+
+#game-window{
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
