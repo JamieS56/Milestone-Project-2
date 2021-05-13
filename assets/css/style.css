@@ -14,43 +14,33 @@ h1{
 }
 
 /*-----game styling------*/
-.dot{
-    border-radius: 50%;
-    border: 1px solid black;
-    width: 200px;
-    height: 200px;
-    background-color: red;
-
-    margin: 7px;
-
-    position: relative;
-}
-@media(maxwidth: 700px){
-    .dot{
-        height:75px;
-        width:75px;
-    }
+#game-window{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: 20px 0px;
 }
 
 #game-box{
+    height:90vw;
+    width:90vw;
+    max-width: 500px;
+    max-height: 500px;
+}
+.dot{
+    border-radius: 50%;
     border: 1px solid black;
-    width: fit-content;
-    margin: auto;
+    width: 90%;
+    height: 90%;
+    background-color: red;
 
+    margin: 7px;
+    position: relative;
 }
 
 .dot-row{
-    display:flex;
-    flex-direction: row;
+    height:33%;
 }
-
-#game-area{
-    position: relative;
-    margin: 30px;
-}
-
-
-
 /*---------headings and buttons styling--------*/
 
 
@@ -79,12 +69,7 @@ h1{
     font-family: 'Amatic SC', cursive;
 }
 
-#game-window{
-    display: flex;
-    align-items: center;
-    justify-content: center;
 
-}
 
 #difficulty-row{
     position: absolute;

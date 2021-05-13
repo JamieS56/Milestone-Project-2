@@ -86,13 +86,13 @@ function onDotClick(dot) {
 function showDifficultUI(){
   $("#difficulty-row").removeClass("hidden")
 }
-function setDotScale(difficulty){
+function setRowHeight(difficulty){
     const noOfDots = NO_OF_DOTS_BY_LEVEL[difficulty];
-    const noOfCols = Math.sqrt(noOfDots);
+    const noOfRows = Math.sqrt(noOfDots);
 
-    newSize = 3/noOfCols
+    newHeight = (100/noOfRows)+'%'
 
-    $('.dot').style.transform = `scale(${newSize})`
+    $('.dot-row').height(newHeight)
 
 }
 function generateDotsHTML(difficulty) {
@@ -110,7 +110,7 @@ function generateDotsHTML(difficulty) {
     }
     dotsHTML += "</div>";
   }
-  setDotScale()
+  
   return dotsHTML;
 }
 
@@ -122,6 +122,7 @@ document.addEventListener("DOMContentLoaded", function () {
       let difficulty = this.value;
       const dotsHTML = generateDotsHTML(difficulty);
       document.getElementById("game-box").innerHTML = dotsHTML;
+      setRowHeight(difficulty)
       $("#difficulty-row").addClass("hidden");
       startGame(difficulty);
     });
