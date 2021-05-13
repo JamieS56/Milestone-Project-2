@@ -17,8 +17,8 @@ h1{
 .dot{
     border-radius: 50%;
     border: 1px solid black;
-    width: 100px;
-    height: 100px;
+    width: 200px;
+    height: 200px;
     background-color: red;
 
     margin: 7px;

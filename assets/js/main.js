@@ -42,6 +42,7 @@ function checkForDotsAndShrink(dotArray){
     startShrink(dot, dotArray, rNumber);
   }
 }
+
 function startShrink(dot, dotArray, rNumber) {
   $(dot).css('backgroundColor', '#1BE00A')
   shrink = anime({
@@ -85,6 +86,15 @@ function onDotClick(dot) {
 function showDifficultUI(){
   $("#difficulty-row").removeClass("hidden")
 }
+function setDotScale(difficulty){
+    const noOfDots = NO_OF_DOTS_BY_LEVEL[difficulty];
+    const noOfCols = Math.sqrt(noOfDots);
+
+    newSize = 3/noOfCols
+
+    $('.dot').style.transform = `scale(${newSize})`
+
+}
 function generateDotsHTML(difficulty) {
   const noOfDots = NO_OF_DOTS_BY_LEVEL[difficulty];
   const noOfRows = Math.sqrt(noOfDots);
@@ -100,6 +110,7 @@ function generateDotsHTML(difficulty) {
     }
     dotsHTML += "</div>";
   }
+  setDotScale()
   return dotsHTML;
 }
 
