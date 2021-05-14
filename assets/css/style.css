@@ -1,5 +1,10 @@
 
 /*-----general styling------*/
+
+.grey-out{
+    opacity: 0.7;
+}
+
 .text-center{
     text-align: center;
 }
@@ -13,6 +18,7 @@ h1{
     padding-top: 20px;
 }
 
+
 /*-----game styling------*/
 #game-window{
     display: flex;
@@ -24,8 +30,8 @@ h1{
 #game-box{
     height:90vw;
     width:90vw;
-    max-width: 500px;
-    max-height: 500px;
+    max-width: 600px;
+    max-height: 600px;
 }
 .dot{
     border-radius: 50%;
@@ -36,10 +42,12 @@ h1{
 
     margin: 7px;
     position: relative;
+    opacity: inherit;
 }
 
 .dot-row{
     height:33%;
+    opacity: inherit;
 }
 /*---------headings and buttons styling--------*/
 
