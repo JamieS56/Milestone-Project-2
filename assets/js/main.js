@@ -38,7 +38,8 @@ function setScore(score) {
     $('#score').text(score);
 }
 function getScore(){
-    $('#score').text()
+    let score = $('#score').text()
+    return score
 }
 //this function generates the array of dots depending on the difficulty using the constant at the top of the page and difficulty put into it.
 function generateDots(difficulty) {
@@ -87,7 +88,8 @@ function startShrink(dot, dotArray, rNumber) {
         if (dotArray.length !== 0) {
             checkForDotsAndShrink(dotArray);
         } else {
-            setHighScore(getScore())
+            score = getScore()
+            setHighScore(score)
             show($("#game-over"))
             isGameInProgress = false
         }
@@ -209,17 +211,20 @@ function storageAvailable(type) {
 
 function checkForHighScore(){
     if(!localStorage.length === 0) {
-        setHighScore('0');
+        setHighScore(0);
     } else {
         let currentHighScore = localStorage.getItem('highScore')
         setHighScore(currentHighScore);
     }
 }
 
-function setHighScore(highScore){
+function setHighScore(currentScore){
+    currentScore = parseInt(currentScore)
+    if (currentScore >= localStorage.getItem('highScore')){
+    localStorage.setItem('highScore', currentScore)
+    $('#high-score').text(localStorage.getItem('highScore'))
+    }
 
-    localStorage.setItem('highScore', highScore)
-    $('high-score').text = localStorage.getItem('highScore')
 
 
 }
