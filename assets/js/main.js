@@ -37,6 +37,9 @@ function rulesButtonClickHandler(){
 function setScore(score) {
     $('#score').text(score);
 }
+function getScore(){
+    $('#score').text()
+}
 //this function generates the array of dots depending on the difficulty using the constant at the top of the page and difficulty put into it.
 function generateDots(difficulty) {
     const noOfDots = NO_OF_DOTS_BY_LEVEL[difficulty];
@@ -68,8 +71,8 @@ function startShrink(dot, dotArray, rNumber) {
         targets: dot,
         scale: {
             value: 0,
-            duration: 2000,
-            delay: 50,
+            duration: 1500,
+            delay: 10,
             easing: 'linear'
         },
         update: function(anim) {
@@ -84,6 +87,7 @@ function startShrink(dot, dotArray, rNumber) {
         if (dotArray.length !== 0) {
             checkForDotsAndShrink(dotArray);
         } else {
+            setHighScore(getScore())
             show($("#game-over"))
             isGameInProgress = false
         }
@@ -153,9 +157,14 @@ function closeRules(){
 
 
 document.addEventListener("DOMContentLoaded", function() {
+    if(storageAvailable('localStorage')){
+        show($('#high-score-box'));
+    }
     addStartButtonClickHandler();
     rulesButtonClickHandler()
     closeRules()
+    checkForHighScore()
+    
     for (i = 0; i < 3; i++) {
         document.getElementsByClassName("difficulty-button")[i].addEventListener("click", function() {
             let difficulty = this.value;
@@ -168,3 +177,49 @@ document.addEventListener("DOMContentLoaded", function() {
         });
     }
 });
+//---------high score--------------//
+
+
+//---------------taken directly from https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API/Using_the_Web_Storage_API--------------//
+function storageAvailable(type) {
+    var storage;
+    try {
+        storage = window[type];
+        var x = '__storage_test__';
+        storage.setItem(x, x);
+        storage.removeItem(x);
+        return true;
+    }
+    catch(e) {
+        return e instanceof DOMException && (
+            // everything except Firefox
+            e.code === 22 ||
+            // Firefox
+            e.code === 1014 ||
+            // test name field too, because code might not be present
+            // everything except Firefox
+            e.name === 'QuotaExceededError' ||
+            // Firefox
+            e.name === 'NS_ERROR_DOM_QUOTA_REACHED') &&
+            // acknowledge QuotaExceededError only if there's something already stored
+            (storage && storage.length !== 0);
+    }
+}
+
+
+function checkForHighScore(){
+    if(!localStorage.length === 0) {
+        setHighScore('0');
+    } else {
+        let currentHighScore = localStorage.getItem('highScore')
+        setHighScore(currentHighScore);
+    }
+}
+
+function setHighScore(highScore){
+
+    localStorage.setItem('highScore', highScore)
+    $('high-score').text = localStorage.getItem('highScore')
+
+
+}
