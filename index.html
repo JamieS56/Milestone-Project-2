@@ -49,31 +49,19 @@
 
         <div id='game-over' class='col hidden'> Game Over!</div>
 
-        <div class="modal fade" id="rulesModal" tabindex="-1" aria-labelledby="rulesModalLabel" aria-hidden="true">
-            <div class="modal-dialog .modal-dialog-centered">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="rulesModalLabel">Rules!</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                    </div>
-                    <div class="modal-body">
-                        <p> Speed dots is a game where you test your reaction speed. click on the green dot as quickly as possible to score as many points as possible. The harder the difficulty the more dots you have to click and could dissapear.</p>
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    </div>
-                </div>
-            </div>
+        <div id="rules" class = "hidden">
+            <h2>Speed Dots Rules!</h1>
+            <p> Speed dots is a game where you test your reaction speed. click on the green dot as quickly as possible to score as many points as possible. The harder the difficulty the more dots you have to click and could dissapear.</p>
+            <button id = "close-rules" class = "btn btn-outline-danger">Close</button>
         </div>
+
+
 
     </div>
 
     <div id='row action-row'>
         <button class="col sm-col-4 btn btn-outline-success" id="start-game-btn">Start</button>
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#rulesModal">
-            Launch static backdrop modal
-        </button>
-
+        <button class="col sm-col-4 btn btn-primary" id="rules-button">Rules!</button>
         <label id="score-box" class="col sm-col-4">Score:
             <span id="score">0</span>
         </label>

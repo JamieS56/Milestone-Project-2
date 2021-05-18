@@ -10,9 +10,26 @@ function addStartButtonClickHandler() {
         console.log('clicked')
         if (isGameInProgress === false) {
             isGameInProgress = true
-            $("#game-over").addClass("hidden")
+            hide($("#game-over"))
             addGreyOutClass($('#game-box'))
             showDifficultUI()
+        }
+    })
+}
+function hide(element){
+    element.addClass('hidden')
+}
+function show(element){
+    element.removeClass('hidden')
+}
+function rulesButtonClickHandler(){
+    $("#rules-button").click(function(){
+        if ($("#rules").hasClass('hidden')){
+            show($('#rules'))
+            addGreyOutClass($('#game-box'))    
+        }else{        
+            hide($('#rules'))
+            removeGreyOutClass($('#game-box'))  
         }
     })
 }
@@ -67,7 +84,7 @@ function startShrink(dot, dotArray, rNumber) {
         if (dotArray.length !== 0) {
             checkForDotsAndShrink(dotArray);
         } else {
-            $("#game-over").removeClass("hidden")
+            show($("#game-over"))
             isGameInProgress = false
         }
     })
@@ -80,7 +97,7 @@ function calculateScoreForDot(dot) {
 function onDotClick(dot) {
     if ($(dot.target).attr('begun') == 'true') { // means only the dot that is in the animation will score.
         // Hide the dot
-        $(dot.target).addClass("hidden")
+        hide($(dot.target))
         let newScore = parseInt($('#score').text()) + calculateScoreForDot(dot);
         setScore(newScore)
     }
@@ -88,7 +105,7 @@ function onDotClick(dot) {
 }
 // code to set difficulty of game
 function showDifficultUI() {
-    $("#difficulty-row").removeClass("hidden")
+    show($("#difficulty-row"))
 }
 
 function setRowHeight(difficulty) {
@@ -127,11 +144,18 @@ function addGreyOutClass(greyoutTarget) {
 function removeGreyOutClass(greyoutTarget) {
     greyoutTarget.removeClass('grey-out')
 }
-
+function closeRules(){
+    $('#close-rules').click(function(){
+        hide($('#rules'))
+        removeGreyOutClass($('#game-box'))  
+    })
+}
 
 
 document.addEventListener("DOMContentLoaded", function() {
     addStartButtonClickHandler();
+    rulesButtonClickHandler()
+    closeRules()
     for (i = 0; i < 3; i++) {
         document.getElementsByClassName("difficulty-button")[i].addEventListener("click", function() {
             let difficulty = this.value;
@@ -139,7 +163,7 @@ document.addEventListener("DOMContentLoaded", function() {
             document.getElementById("game-box").innerHTML = dotsHTML;
             setRowHeight(difficulty)
             removeGreyOutClass($('#game-box'))
-            $("#difficulty-row").addClass("hidden");
+            hide($("#difficulty-row"));
             startGame(difficulty);
         });
     }
