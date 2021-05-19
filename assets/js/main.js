@@ -31,6 +31,7 @@ function initialiseLevelClickHandlers() {
 function addStartButtonClickHandler() {
     $("#start-game-btn").click(function () {
         hide($("#game-over"));
+        hide($("#rules"))
         // Hide start and rules button
         // Show restart and quit button
         addGreyOutClass($("#game-box"));
@@ -53,6 +54,7 @@ function rulesButtonClickHandler() {
     $("#rules-button").click(function () {
         if ($("#rules").hasClass("hidden")) {
             show($("#rules"));
+            hide($('#difficulty-row'));
             addGreyOutClass($("#game-box"));
         } else {
             hide($("#rules"));
