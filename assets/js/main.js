@@ -121,7 +121,7 @@ function startShrink(dot, dotArray, rNumber) {
     })
 }
 function calculateScoreForDot(dot) {
-    return Math.floor((1 / parseInt($(dot.target).attr("shrinkage")) * 1000))
+    return Math.floor((1 / parseInt($(dot).attr("shrinkage")) * 1000))
 }
 function onDotClick(dot, dotArray) {
     if ($(dot).attr('begun') == 'true') { // means only the dot that is in the animation will score.
