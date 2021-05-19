@@ -84,15 +84,8 @@ function displayHighScore(){
         checkForHighScore();
     }
 }
-function checkForDotsAndShrink(dotArray) {
-    let rNumber = Math.floor(Math.random() * dotArray.length) //chooses the random number
-    let dot = dotArray[rNumber]
-    if (dotArray.length != 0) {
-        dotArray.splice(rNumber, 1)
-        startShrink(dot, dotArray, rNumber);
-    }
-}
-function startShrink(dot, dotArray, rNumber) {
+
+function startShrink(dot, dotArray) {
     let dotClicked = false
     $(dot).css('backgroundColor', '#1BE00A')
     shrinkAnimationRef = anime({
@@ -116,12 +109,22 @@ function startShrink(dot, dotArray, rNumber) {
     })
     shrinkAnimationRef.finished.then(function() {
         if (dotClicked == false){
-            checkNextDot(dot, dotArray)
+            checkNextDot(dotArray)
         }
     })
 }
+
 function calculateScoreForDot(dot) {
     return Math.floor((1 / parseInt($(dot).attr("shrinkage")) * 1000))
+}
+
+function checkForDotsAndShrink(dotArray) {
+    let rNumber = Math.floor(Math.random() * dotArray.length) //chooses the random number
+    let dot = dotArray[rNumber]
+    if (dotArray.length != 0) {
+        dotArray.splice(rNumber, 1)
+        startShrink(dot, dotArray);
+    }
 }
 function onDotClick(dot, dotArray) {
     if ($(dot).attr('begun') == 'true') { // means only the dot that is in the animation will score.

@@ -19,14 +19,14 @@
         <h1 class="text-center">Speed Dots</h1>
     </div>
     <div class=" row score-row justify-content-evenly">
-        <label id="score-box" class="score-box">Score:
-           <span id="score">0</span>
-        </label>
-        <label id="high-score-box" class="score-box hidden">High Score:
+        <label id="high-score-box" class="col-12 col-sm-6 score-box">High Score:
             <span id="high-score">0</span>
         </label>
+        <label id="score-box" class="col-12 col-sm-6 score-box">Score:
+           <span id="score">0</span>
+        </label>
     </div>
-    <div id='game-window'>
+    <div id='game-window' class = 'container'>
         <section id="game-area">
             <div id="game-box" class="container">
                 <div class="dot-row row">
@@ -68,8 +68,8 @@
     </div>
 
     <div id='action-row' class = "row justify-content-evenly">
-        <button class="col sm-col-4 btn btn-outline-success" id="start-game-btn">Start</button>
-        <button class="col sm-col-4 btn btn-primary" id="rules-button">Rules!</button>
+        <button class="col-4 btn btn-outline-success action-btn" id="start-game-btn">Start</button>
+        <button class="col-4 btn btn-primary action-btn" id="rules-button">Rules!</button>
 
     </div>
 

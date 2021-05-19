@@ -15,11 +15,10 @@
 
 h1{
     font-family: 'Oswald', sans-serif;
-    padding-top: 20px;
+    margin-top: 50px;
 }
 
 
-}
 /*-----game styling------*/
 #game-window{
     display: flex;
@@ -54,7 +53,7 @@ h1{
 /*---------headings and buttons styling--------*/
 
 .score-row{
-    width: 80vw;
+    width: 70vw;
     display: inline-flex;
     margin: 20px 0px
 }
@@ -63,18 +62,18 @@ h1{
     border: 1px solid black;
     border-radius: 10%;
     font-weight: bold;
-    width: 20vw;
+    width: 200px;
     height: fit-content;
     padding: 5px;
     font-family: 'Amatic SC', cursive;
     font-size: 30px;
+    margin: 10px;
 
 }
 
 #game-over{
-    position: fixed;
     position: absolute;
-    width: 10em;
+    width: 80%;
     background-color: aliceblue;
     font-weight: bold;
     border: 1px solid black;
@@ -91,23 +90,15 @@ h1{
 }
 
 #action-row{
-    width: 40vw;
+    width: 70vw;
     display: inline-flex;
     margin: 20px 0px;
 
 }
 
-#rules-button{
-    margin-left:40px;
-    width: 35vw;
-    max-width: 300px;
+.action-btn{
+    max-width: 300px;    
 }
-#start-game-btn{
-    margin-right: 40px;
-    width: 35vw;
-    max-width: 300px;
-}
-
 
 .btn{
     font-family: 'Amatic SC', cursive;
