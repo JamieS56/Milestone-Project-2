@@ -13,6 +13,7 @@ document.addEventListener("DOMContentLoaded", function() {
     closeRules();
     displayHighScore();
     initialiseLevelClickHandlers();
+    restart()
 });
 function initialiseLevelClickHandlers() {
     for (i = 0; i < 3; i++) {
@@ -44,6 +45,12 @@ function hide(element){
 function show(element){
     element.removeClass('hidden')
 }
+function noDisplay(element){
+    element.addClass('display-none')
+}
+function display(element){
+    element.removeClass('display-none')
+}
 function rulesButtonClickHandler(){
     $("#rules-button").click(function(){
         if ($("#rules").hasClass('hidden')){
@@ -74,6 +81,8 @@ function generateDots(difficulty) {
 }
 // this will run after difficulty is selected and choose which dot starts to shrink.
 function startGame(difficulty) {
+    noDisplay($('#start-game-btn'))
+    display($('#restart-game-btn'))
     setScore(0);
     let dotsArray = generateDots(difficulty);
     checkForDotsAndShrink(dotsArray);
@@ -144,6 +153,8 @@ function checkNextDot(dotArray) {
              score = getScore()
              setHighScore(score)
              show($("#game-over"))
+             noDisplay($('#restart-game-btn'))
+            display($('#start-game-btn'))
              isGameInProgress = false
          }
 
@@ -229,6 +240,10 @@ function setHighScore(currentScore){
     }
 }
 function restart() {
- shrinkAnimationRef.pause();
- $('#start-game-btn').click();
+    $('#restart-game-btn').click(function(){
+        shrinkAnimationRef.pause();
+        $('#start-game-btn').click()
+    });
+    
+    
 }
