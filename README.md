@@ -32,8 +32,10 @@ high score api
 
 ---
 ## Technologies Used
-Bootstrap
-Jquery
+
+* Bootstrap
+* Jquery
+
 ---
 ## Testing
 

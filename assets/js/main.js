@@ -1,19 +1,41 @@
-let isGameInProgress = false
 const NO_OF_DOTS_BY_LEVEL = {
     easy: 9,
     medium: 16,
     hard: 25
+};
+let isGameInProgress = false
+let shrinkAnimationRef;
+document.addEventListener("DOMContentLoaded", function() {
+    //cd
+    addStartButtonClickHandler();
+    // Comment
+    rulesButtonClickHandler()
+    closeRules();
+    displayHighScore();
+    initialiseLevelClickHandlers();
+});
+function initialiseLevelClickHandlers() {
+    for (i = 0; i < 3; i++) {
+        document.getElementsByClassName("difficulty-button")[i].addEventListener("click", function() {
+            let difficulty = this.value;
+            const dotsHTML = generateDotsHTML(difficulty);
+            document.getElementById("game-box").innerHTML = dotsHTML;
+            setRowHeight(difficulty)
+            removeGreyOutClass($('#game-box'))
+            hide($("#difficulty-row"));
+            startGame(difficulty);
+        });
+    }
 }
 // When the start button gets clicked this function is called which checks if a game is currently in progress and shows up the difficulty UI.
 function addStartButtonClickHandler() {
     $('#start-game-btn').click(function() {
-        console.log('clicked')
-        if (isGameInProgress === false) {
-            isGameInProgress = true
-            hide($("#game-over"))
-            addGreyOutClass($('#game-box'))
-            showDifficultUI()
-        }
+        isGameInProgress = true
+        hide($("#game-over"))
+        // Hide start and rules button
+        // Show restart and quit button
+        addGreyOutClass($('#game-box'))
+        showDifficultySelectionUI()
     })
 }
 function hide(element){
@@ -54,9 +76,14 @@ function generateDots(difficulty) {
 function startGame(difficulty) {
     setScore(0);
     let dotsArray = generateDots(difficulty);
-    checkForDotsAndShrink(dotsArray)
+    checkForDotsAndShrink(dotsArray);
 }
-
+function displayHighScore(){
+     if(storageAvailable('localStorage')){
+        show($('#high-score-box'));
+        checkForHighScore();
+    }
+}
 function checkForDotsAndShrink(dotArray) {
     let rNumber = Math.floor(Math.random() * dotArray.length) //chooses the random number
     let dot = dotArray[rNumber]
@@ -65,15 +92,15 @@ function checkForDotsAndShrink(dotArray) {
         startShrink(dot, dotArray, rNumber);
     }
 }
-
 function startShrink(dot, dotArray, rNumber) {
+    let dotClicked = false
     $(dot).css('backgroundColor', '#1BE00A')
-    shrink = anime({
+    shrinkAnimationRef = anime({
         targets: dot,
         scale: {
             value: 0,
             duration: 1500,
-            delay: 10,
+            delay: 50,
             easing: 'linear'
         },
         update: function(anim) {
@@ -83,47 +110,52 @@ function startShrink(dot, dotArray, rNumber) {
             $(dot).attr('begun', anim.began)
         }
     });
-    $('.dot').click(dot, onDotClick)
-    shrink.finished.then(function() {
-        if (dotArray.length !== 0) {
-            checkForDotsAndShrink(dotArray);
-        } else {
-            score = getScore()
-            setHighScore(score)
-            show($("#game-over"))
-            isGameInProgress = false
+    $(dot).click(function(){
+        onDotClick(dot, dotArray)
+        dotClicked = true
+    })
+    shrinkAnimationRef.finished.then(function() {
+        if (dotClicked == false){
+            checkNextDot(dot, dotArray)
         }
     })
 }
-
 function calculateScoreForDot(dot) {
     return Math.floor((1 / parseInt($(dot.target).attr("shrinkage")) * 1000))
 }
-
-function onDotClick(dot) {
-    if ($(dot.target).attr('begun') == 'true') { // means only the dot that is in the animation will score.
+function onDotClick(dot, dotArray) {
+    if ($(dot).attr('begun') == 'true') { // means only the dot that is in the animation will score.
         // Hide the dot
-        hide($(dot.target))
+        hide($(dot))
         let newScore = parseInt($('#score').text()) + calculateScoreForDot(dot);
         setScore(newScore)
     }
-    dot.stopImmediatePropagation()
+    checkNextDot(dot, dotArray)
+
+}
+function checkNextDot(dot, dotArray) {
+        
+        if (dotArray.length !== 0) {
+             checkForDotsAndShrink(dotArray);
+         } else {
+             score = getScore()
+             setHighScore(score)
+             show($("#game-over"))
+             isGameInProgress = false
+         }
+
+
 }
 // code to set difficulty of game
-function showDifficultUI() {
+function showDifficultySelectionUI() {
     show($("#difficulty-row"))
 }
-
 function setRowHeight(difficulty) {
     const noOfDots = NO_OF_DOTS_BY_LEVEL[difficulty];
     const noOfRows = Math.sqrt(noOfDots);
-
     newHeight = (100 / noOfRows) + '%'
-
     $('.dot-row').height(newHeight)
-
 }
-
 function generateDotsHTML(difficulty) {
     const noOfDots = NO_OF_DOTS_BY_LEVEL[difficulty];
     const noOfRows = Math.sqrt(noOfDots);
@@ -139,14 +171,11 @@ function generateDotsHTML(difficulty) {
         }
         dotsHTML += "</div>";
     }
-
     return dotsHTML;
 }
-
 function addGreyOutClass(greyoutTarget) {
     greyoutTarget.addClass('grey-out')
 }
-
 function removeGreyOutClass(greyoutTarget) {
     greyoutTarget.removeClass('grey-out')
 }
@@ -156,32 +185,7 @@ function closeRules(){
         removeGreyOutClass($('#game-box'))  
     })
 }
-
-
-document.addEventListener("DOMContentLoaded", function() {
-    if(storageAvailable('localStorage')){
-        show($('#high-score-box'));
-    }
-    addStartButtonClickHandler();
-    rulesButtonClickHandler()
-    closeRules()
-    checkForHighScore()
-    
-    for (i = 0; i < 3; i++) {
-        document.getElementsByClassName("difficulty-button")[i].addEventListener("click", function() {
-            let difficulty = this.value;
-            const dotsHTML = generateDotsHTML(difficulty);
-            document.getElementById("game-box").innerHTML = dotsHTML;
-            setRowHeight(difficulty)
-            removeGreyOutClass($('#game-box'))
-            hide($("#difficulty-row"));
-            startGame(difficulty);
-        });
-    }
-});
 //---------high score--------------//
-
-
 //---------------taken directly from https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API/Using_the_Web_Storage_API--------------//
 function storageAvailable(type) {
     var storage;
@@ -207,8 +211,6 @@ function storageAvailable(type) {
             (storage && storage.length !== 0);
     }
 }
-
-
 function checkForHighScore(){
     if(!localStorage.length === 0) {
         setHighScore(0);
@@ -217,14 +219,14 @@ function checkForHighScore(){
         setHighScore(currentHighScore);
     }
 }
-
 function setHighScore(currentScore){
     currentScore = parseInt(currentScore)
     if (currentScore >= localStorage.getItem('highScore')){
     localStorage.setItem('highScore', currentScore)
     $('#high-score').text(localStorage.getItem('highScore'))
     }
-
-
-
+}
+function restart() {
+ shrinkAnimationRef.pause();
+ $('#start-game-btn').click();
 }

@@ -54,7 +54,7 @@ h1{
 
 
 
-#score-box{
+.score-box{
     border: 1px solid black;
     border-radius: 10%;
     font-weight: bold;
