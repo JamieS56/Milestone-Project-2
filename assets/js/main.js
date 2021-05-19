@@ -130,10 +130,10 @@ function onDotClick(dot, dotArray) {
         let newScore = parseInt($('#score').text()) + calculateScoreForDot(dot);
         setScore(newScore)
     }
-    checkNextDot(dot, dotArray)
+    checkNextDot(dotArray)
 
 }
-function checkNextDot(dot, dotArray) {
+function checkNextDot(dotArray) {
         
         if (dotArray.length !== 0) {
              checkForDotsAndShrink(dotArray);
@@ -143,7 +143,6 @@ function checkNextDot(dot, dotArray) {
              show($("#game-over"))
              isGameInProgress = false
          }
-
 
 }
 // code to set difficulty of game

@@ -19,6 +19,7 @@ h1{
 }
 
 
+}
 /*-----game styling------*/
 #game-window{
     display: flex;
@@ -52,13 +53,17 @@ h1{
 }
 /*---------headings and buttons styling--------*/
 
-
+.score-row{
+    width: 80vw;
+    display: inline-flex;
+    margin: 20px 0px
+}
 
 .score-box{
     border: 1px solid black;
     border-radius: 10%;
     font-weight: bold;
-    width: fit-content;
+    width: 20vw;
     height: fit-content;
     padding: 5px;
     font-family: 'Amatic SC', cursive;
@@ -85,7 +90,23 @@ h1{
     width: fit-content;
 }
 
+#action-row{
+    width: 40vw;
+    display: inline-flex;
+    margin: 20px 0px;
 
+}
+
+#rules-button{
+    margin-left:40px;
+    width: 35vw;
+    max-width: 300px;
+}
+#start-game-btn{
+    margin-right: 40px;
+    width: 35vw;
+    max-width: 300px;
+}
 
 
 .btn{
@@ -138,4 +159,8 @@ h1{
 
 
 
-
+@media screen and (max-width: 600px) {
+  body{
+      font-size: 60%;
+  }
+}
