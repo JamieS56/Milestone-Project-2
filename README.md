@@ -71,7 +71,7 @@ That is why there are limited buttons as they are there only for the essentials.
 * Multiple difficulties - There will be multiple difficulties you can choose from, the harder the difficulty, the smaller and more dots there are.
 * High Score - The users high score will be stored in local memory so it saves in the browser  
 
-### future features
+### Future features:
 
 * Game countdown - A countdown after difficulty has been selected to give the user time to get ready.
 * Email dev - A way for the user to contact the dev with any bugs they find or features to suggest.
@@ -89,7 +89,7 @@ That is why there are limited buttons as they are there only for the essentials.
 ---
 ## Testing
 
-### Start button:
+### Start button
 
 ![Start button testing](./assets/images/testing/start-button-1.png)
 
@@ -150,7 +150,7 @@ The score is worked out by taking the animation completion rate provided by the 
 
 * ~~Lastly the bubbling effect which meant that the function would fire multiple times the more times you clicked it e.g. 1st click 1 fire, 2nd click, 2 fires not 1st click 1 fire , 2nd click 1 fire. I found a solution online from https://www.sitepoint.com/event-bubbling-javascript/ that said to add dot.stopImediatePropagation() to stop multiple firings.~~
 
-#### UPDATE/ Fixes:  
+#### Fixes:  
 
 ![Score system testing](./assets/images/testing/score-code-updated.png)
 
@@ -159,7 +159,7 @@ I have reworked the code so it is now cleaner and there aren't functions inside 
 #### How to test:
 Play the game and watch the score go up. the longer you wait for the dot to shrink the less points you will get.
 
-### Dot clicking system:
+### Dot clicking system
 
 ![Dot click testing](./assets/images/user-stories/user-stories-hard.png)
 
@@ -169,7 +169,7 @@ The dot should dissapear and next dot instantly start shrinking once the origina
 
 the dot would only start the animation once the perviouse dot had finnished it's animation.
 
-#### Fixes
+#### Fixes:
 
 I moved the call for the next dot to start after the click and not after the animation had finnished which mad the gameplay much smoother and enjoyable.
 
@@ -177,13 +177,17 @@ I moved the call for the next dot to start after the click and not after the ani
 
 Play the game and click the dots and it will dissapear.
 
-### High score system:
+### High score system
 
 ![High score testing](./assets/images/testing/high-score.png)
 
 The high score is saved in local memory as shown on the right. The code used tests the availability of local storage and checks before displaying the high score incase it isn't available. It works fully on all devices supporing local storage 
 
-### Rule button:
+#### How to test: 
+
+Get the high score close the tab on your browser and then reopen and your high score will be saved and shown in the high score box.
+
+### Rule button
 
 ![rules testing](./assets/images/user-stories/user-stories-rules.png)
 
@@ -194,7 +198,7 @@ All it's meant to do is show a pop up on screen of the rules with a close button
 Click on rules and then close or back on the rules button. You will find that if the difficulty is showing it will dissapear when rules is clicked and vice versa.
 
 
-### Restart button:
+### Restart button
 
 The restart button is meant to stop the game in the background so the user can select a new difficulty or the same one to restart the game.
 
@@ -202,7 +206,7 @@ The restart button is meant to stop the game in the background so the user can s
 
 I had the problem of the game not stopping when you clicked restar and still running the previouse games animations when I had started a new game. 
 
-#### Fixes
+#### Fixes:
 
 I fixed this by moving the call to start a new dot after a dot had been clicked. Also I used anime.js pause feature to stop the animation.
 
@@ -211,7 +215,7 @@ I fixed this by moving the call to start a new dot after a dot had been clicked.
  
 Start the game thenchoose the difficulty and whilst the game is running, click on the restart button, do this as many ties as you like.
 
-### Animation:
+### Animation
 
 ![Animation testing](./assets/images/user-stories/user-stories-medium.png)
 
@@ -230,6 +234,7 @@ Just play the game and watch the dots shrink, also halfway through the game clic
 
 * Light House
 ---
+
 ## Deployment
 
 ### How to deploy the website:
