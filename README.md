@@ -13,6 +13,31 @@ Speed dots is for people who want to have fun and test there reaction speed. the
 * "As a dad I want a game thats easy for my kids to play but I can also play and be challenged."
 * "I want to be able to contact developers if I have any questions/ concerns about the game."
 
+### Testing user Stories
+
+* The first user was wondering how easy the game was and how fun it is. 
+  * There is a rules button that easily explains the rules and the objective of the game, the game is also really basic, only one action is required(clicking the dots) so it's easy to pick up.
+  
+    ![rules user stories testing](./assets/images/user-stories/user-stories-rules.png)
+  
+  * It is also quite addictive and fun trying to beat your high score and your friends which is shown by the high score feature.
+
+    ![high score user stories testing](./assets/images/user-stories/user-stories-high-score.png)
+
+
+* The second user wanted varying difficulties in the game for hi and his kids to play.
+  * This is implemented by having multiple difficulties that change the number of dots on screen. although you can get more points on higher levels it's harder to get the maximum amount of points. 
+    
+    ![difficulty buttons user stories testing](./assets/images/user-stories/user-stories-difficulty-buttons.png)
+
+    ![easy button user stories testing](./assets/images/user-stories/user-stories-easy.png)
+
+    ![medium button user stories testing](./assets/images/user-stories/user-stories-medium.png)
+
+    ![hard button user stories testing](./assets/images/user-stories/user-stories-hard.png)
+
+
+
 ---
 ## Wireframes
 
@@ -20,67 +45,74 @@ Speed dots is for people who want to have fun and test there reaction speed. the
 ## Features
 
 ### Existing features:
-Game page - The main page of the website that has access to everything on it.
-Rules pop-up - A pop up that explains the rules when you click on the rules button.
-Multiple difficulties - There will be multiple difficulties you can choose from, the harder the difficulty, the smaller and more dots there are.
-Email dev - a way for the user to contact the dev with any bugs they find or features to suggest.
+* Game page - The main page of the website that has access to everything on it.
+* Rules pop-up - A pop up that explains the rules when you click on the rules button.
+* Multiple difficulties - There will be multiple difficulties you can choose from, the harder the difficulty, the smaller and more dots there are.
+* High Score - The users high score will be stored in local memory so it saves in the browser  
 
 ### future features
 
-game countdown
-high score api
+* Game countdown - A countdown after difficulty has been selected to give the user time to get ready.
+* Email dev - A way for the user to contact the dev with any bugs they find or features to suggest.
 
 ---
 ## Technologies Used
 
-* Bootstrap
-* Jquery
+* [Bootstrap](https://getbootstrap.com/) - for general css styling.
+* [jQuery](https://jquery.com/) - for helping write the js.
+* [anime.js](https://animejs.com/) - used to create the shrinking animation.
+* [Google Fonts](https://fonts.google.com/) - used the fonts throughout the website.
+* [TinyPNG.com](https://tinypng.com/) - used to shrink file size of images used in ReadME file.
+* [webFormatter.com](https://webformatter.com/) - used to tidy all code.
 
 ---
 ## Testing
 
 ### Start Button:
 
-![Start button testing](./assets/images/start-button-1.png)
+![Start button testing](./assets/images/testing/start-button-1.png)
 
-![Start button testing](./assets/images/start-button-2.png)
+![Start button testing](./assets/images/testing/start-button-2.png)
 
-Makes the difficulty buttons visible to select difficulty and start game, works well.
+Makes the difficulty buttons visible to select difficulty and start game, and greys out background now. also hides when game starts and is replaced with restart button during game and then returns to a start button when game is finnished.
 
 
 ### Difficulty buttons:
 
-![Difficulty button testing](./assets/images/difficulty-button-1.png)
+![Difficulty button testing](./assets/images/testing/difficulty-button-1.png)
 
-![Difficulty button testing](./assets/images/difficulty-button-2.png)
+![Difficulty button testing](./assets/images/testing/difficulty-button-2.png)
 
-![Difficulty button testing](./assets/images/difficulty-button-3.png)
+![Difficulty button testing](./assets/images/testing/difficulty-button-3.png)
 
-As you can see they all work changing the number of dots. And also call a function that will start the game when clicked. Shown in the console by printing “game Started”. Also once clicked, all difficulty buttons and hidden and not obstructing the game.
+As you can see they all work changing the number of dots. And also call a function that will start the game when clicked. Shown in the console by printing “game Started”. Also once clicked, all difficulty buttons are hidden and not obstructing the game.
 
 ###  Random Number Generator(RNG)
 
-![Dot RNG testing](./assets/images/rng-screen.png)
+![Dot RNG testing](./assets/images/testing/rng-screen.png)
 
-![Dot RNG testing](./assets/images/rng-code.png)
+![Dot RNG testing](./assets/images/testing/rng-code.png)
 
 It all works well and selects a random dot each time you run the game.
 
 
 ### Score System:
 
-![Score system testing](./assets/images/score-screen.png)
+![Score system testing](./assets/images/testing/score-screen.png)
 
-![Score system testing](./assets/images/score-code.png)
+![Score system testing](./assets/images/testing/score-code.png)
 
 There were lots of problems linking up the score system.
 
  The first was getting the process of the progress the animation into the addScore function from the startShrink function. It wouldn’t go into a variable that was accessible in the addScore so instead I added it as an attribute called shrinkage to the dot div. because the div is html I was able to access it through traversing the dom.
 
-Secondly was accessing the classes of the dot. As ‘dot’ was being passed in as an event and not the div object. I managed to target it by using event.target.
+Secondly was accessing the classes of the dot. As 'dot' was being passed in as an event and not the div object. I managed to target it by using event.target.
 
-Lastly the bubbling effect which meant that the function would fire multiple times the more times you clicked it e.g. 1st click 1 fire, 2nd click, 2 fires not 1st click 1 fire , 2nd click 1 fire. I found a solution online from https://www.sitepoint.com/event-bubbling-javascript/ that said to add dot.stopImediatePropagation() to stop multiple firings.
+~~Lastly the bubbling effect which meant that the function would fire multiple times the more times you clicked it e.g. 1st click 1 fire, 2nd click, 2 fires not 1st click 1 fire , 2nd click 1 fire. I found a solution online from https://www.sitepoint.com/event-bubbling-javascript/ that said to add dot.stopImediatePropagation() to stop multiple firings.~~
 
+UPDATE:  I have reworked the code so it is now cleaner and there aren't functions inside of functions and this fixed the bubbling effect plus made everything much more managable and accessible throughout the js. This also fixed the problem I was having passing in 'dot' to other functions.
+
+![Score system testing](./assets/images/testing/score-code-updated.png)
 ---
 ## Deployment
 
