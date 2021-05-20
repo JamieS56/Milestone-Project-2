@@ -2,10 +2,20 @@
 
 ## What is Speed Dots
 
-Speed dots is a game that tests the users reaction speed, on the screen you will see a number of dots that when you start the game will start individually shrinking. it is the users task to click on the dots before they dissapear to get as high a score as possible. The faster you click on the dots the higher the score.
+Speed dots is a game that tests the users reaction speed, on the screen you will see a number of dots that when you start the game will start individually shrinking. It is the users task to click on the dots before they dissapear to get as high a score as possible. The faster you click on the dots the higher the score you get. Speed Dots is meant to be simplistic and accessible to everyone
+
 ---
 ## UX
-Speed dots is for people who want to have fun and test there reaction speed. the target audience is young kids, mainly 6 - 15 year olds, but anyone can play. I think this is a good target audience because kids are more likley to be playing games and have more free time.
+### Target Audience
+
+The target audience is young kids, mainly 6 - 15 year olds, but anyone can play. I think this is a good target audience because kids are more likley to be playing games and have more free time.
+Overall Speed dots is for people who want to have fun and test there reaction speed. 
+
+### Goals
+
+* Easy to learn (simple game mechanics and style).
+* Fun and competitive.
+* Accessible to a wide range of people across multiple devices.
 
 ### User Stories
 
@@ -13,7 +23,7 @@ Speed dots is for people who want to have fun and test there reaction speed. the
 * "As a dad I want a game thats easy for my kids to play but I can also play and be challenged."
 * "I want to be able to contact developers if I have any questions/ concerns about the game."
 
-### Testing user Stories
+#### Testing user Stories
 
 * The first user was wondering how easy the game was and how fun it is. 
   * There is a rules button that easily explains the rules and the objective of the game, the game is also really basic, only one action is required(clicking the dots) so it's easy to pick up.
@@ -39,7 +49,18 @@ Speed dots is for people who want to have fun and test there reaction speed. the
 
 
 ---
-## Wireframes
+### Wireframes
+
+#### Design Choices
+
+I wanted Speed dots to have a realy simplistic look, similar to The Impossible Quiz and The Impossible game, which are both browser games I used to play as a kid. The simplicity of these games made it easy to pick up but difficult to master. 
+That is why there are limited buttons as they are there only for the essentials.
+
+![Wireframes desktop](./assets/images/wireFrames/speed-dots-wf-desktop.png)
+
+![Wireframes tablet](./assets/images/wireFrames/speed-dots-wf-tablet.png)
+
+![Wireframes mobile](./assets/images/wireFrames/speed-dots-wf-mobile.png)
 
 ---
 ## Features
@@ -68,14 +89,17 @@ Speed dots is for people who want to have fun and test there reaction speed. the
 ---
 ## Testing
 
-### Start Button:
+### Start button:
 
 ![Start button testing](./assets/images/testing/start-button-1.png)
 
 ![Start button testing](./assets/images/testing/start-button-2.png)
 
-Makes the difficulty buttons visible to select difficulty and start game, and greys out background now. also hides when game starts and is replaced with restart button during game and then returns to a start button when game is finnished.
+The start button makes the difficulty buttons visible to select difficulty and start game, and greys out background. It's display turns to 'none' as the 'hidden' feature made replacing the button with the restart button hard to style when 'hidden' it then returns to a start button again and restart buttons display is 'none' when game is finnished.
 
+#### How to test:
+
+When the page is loaded click on the start button and you will see the difficulty buttons apear. You wil also find that if the rules popup is open, and you click start, the rules page will close and vice versa.
 
 ### Difficulty buttons:
 
@@ -87,6 +111,16 @@ Makes the difficulty buttons visible to select difficulty and start game, and gr
 
 As you can see they all work changing the number of dots. And also call a function that will start the game when clicked. Shown in the console by printing “game Started”. Also once clicked, all difficulty buttons are hidden and not obstructing the game.
 
+#### How to test:
+
+After clicking start click on a dificulty and it will start the game with the corresponding number of dots. 
+
+Difficulty | No. Dots
+-----------|----------
+Easy | 9
+Medium | 16
+Hard | 25
+
 ###  Random Number Generator(RNG)
 
 ![Dot RNG testing](./assets/images/testing/rng-screen.png)
@@ -95,33 +129,122 @@ As you can see they all work changing the number of dots. And also call a functi
 
 It all works well and selects a random dot each time you run the game.
 
+#### How to test:
+Start the game on any difficulty and a random dot will always start shrinking and so wil every dot after, it will be different every game.
 
-### Score System:
+
+### Score system:
 
 ![Score system testing](./assets/images/testing/score-screen.png)
 
 ![Score system testing](./assets/images/testing/score-code.png)
 
-There were lots of problems linking up the score system.
+The score system is how the score gets incremented each time you click on the dot, the faster you click on it the more points you get. Then this gets shown in the score box.
+The score is worked out by taking the animation completion rate provided by the anime.js api and using the equation 1000/completion.
 
- The first was getting the process of the progress the animation into the addScore function from the startShrink function. It wouldn’t go into a variable that was accessible in the addScore so instead I added it as an attribute called shrinkage to the dot div. because the div is html I was able to access it through traversing the dom.
+#### Problems I had:
 
-Secondly was accessing the classes of the dot. As 'dot' was being passed in as an event and not the div object. I managed to target it by using event.target.
+* The first was getting the process of the progress the animation into the addScore function from the startShrink function. It wouldn’t go into a variable that was accessible in the addScore so instead I added it as an attribute called shrinkage to the dot div and because the div is html I was able to access it through traversing the dom.
 
-~~Lastly the bubbling effect which meant that the function would fire multiple times the more times you clicked it e.g. 1st click 1 fire, 2nd click, 2 fires not 1st click 1 fire , 2nd click 1 fire. I found a solution online from https://www.sitepoint.com/event-bubbling-javascript/ that said to add dot.stopImediatePropagation() to stop multiple firings.~~
+* ~~Secondly was accessing the classes of the dot. As 'dot' was being passed in as an event and not the div object. I managed to target it by using event.target.~~
 
-UPDATE:  I have reworked the code so it is now cleaner and there aren't functions inside of functions and this fixed the bubbling effect plus made everything much more managable and accessible throughout the js. This also fixed the problem I was having passing in 'dot' to other functions.
+* ~~Lastly the bubbling effect which meant that the function would fire multiple times the more times you clicked it e.g. 1st click 1 fire, 2nd click, 2 fires not 1st click 1 fire , 2nd click 1 fire. I found a solution online from https://www.sitepoint.com/event-bubbling-javascript/ that said to add dot.stopImediatePropagation() to stop multiple firings.~~
+
+#### UPDATE/ Fixes:  
 
 ![Score system testing](./assets/images/testing/score-code-updated.png)
+
+I have reworked the code so it is now cleaner and there aren't functions inside of functions and this fixed the bubbling effect plus made everything much more managable and accessible throughout the js file. This also fixed the problem I was having passing in 'dot' to other functions and is no longer being passed in as an event.
+
+#### How to test:
+Play the game and watch the score go up. the longer you wait for the dot to shrink the less points you will get.
+
+### Dot clicking system:
+
+![Dot click testing](./assets/images/user-stories/user-stories-hard.png)
+
+The dot should dissapear and next dot instantly start shrinking once the original had either dissapeared or been clicked.
+
+#### Problems I had:
+
+the dot would only start the animation once the perviouse dot had finnished it's animation.
+
+#### Fixes
+
+I moved the call for the next dot to start after the click and not after the animation had finnished which mad the gameplay much smoother and enjoyable.
+
+#### How to test:
+
+Play the game and click the dots and it will dissapear.
+
+### High score system:
+
+![High score testing](./assets/images/testing/high-score.png)
+
+The high score is saved in local memory as shown on the right. The code used tests the availability of local storage and checks before displaying the high score incase it isn't available. It works fully on all devices supporing local storage 
+
+### Rule button:
+
+![rules testing](./assets/images/user-stories/user-stories-rules.png)
+
+All it's meant to do is show a pop up on screen of the rules with a close button.
+
+#### How to test:
+
+Click on rules and then close or back on the rules button. You will find that if the difficulty is showing it will dissapear when rules is clicked and vice versa.
+
+
+### Restart button:
+
+The restart button is meant to stop the game in the background so the user can select a new difficulty or the same one to restart the game.
+
+#### Problems I had:
+
+I had the problem of the game not stopping when you clicked restar and still running the previouse games animations when I had started a new game. 
+
+#### Fixes
+
+I fixed this by moving the call to start a new dot after a dot had been clicked. Also I used anime.js pause feature to stop the animation.
+
+
+#### How to test:
+ 
+Start the game thenchoose the difficulty and whilst the game is running, click on the restart button, do this as many ties as you like.
+
+### Animation:
+
+![Animation testing](./assets/images/user-stories/user-stories-medium.png)
+
+All the animation is done through [anime.js](https://animejs.com/) API. I decided to use it because creating my own animations seemed way to complex and the animations on there website looked really good.
+All i needed it to do was shrink and stop, so i used the scale property and the pause function. I also used the animation progress function as previously mentioned to help get the score. it took a little fiddling to get used to how it worked but overall I had no major problems animating the dots.
+
+#### How to test:
+
+Just play the game and watch the dots shrink, also halfway through the game click restart and you will see the dots pause in the background.
+
+## Validator testing
+
+* HTML
+
+* CSS
+
+* Light House
 ---
 ## Deployment
 
-To deploy the website I went onto github and clicked on my project, went to the settings tab and selected pages, then changed the branch from none to master. Then I refreshed the page and the link was live.
+### How to deploy the website:
+
+1. I went to [github](https://github.com/) and logged in.
+2. I then clicked on my project, went to the settings tab and selected pages. 
+3. I then changed the branch from none to master.
+4. Then I refreshed the page and the link was live.
 
 To run the code locally you will need to create a git hub acount, then go to my page [jamies56](https://github.com/JamieS56) and click on Milestone Project 2. There will be all the files and you can click on each one to view the code. You can then copy and paste the code into an editor for example git pod and run it yourself.
 
 ---
 ## Credits
+
 https://www.sitepoint.com/event-bubbling-javascript/ where i got the fix for the bubbling problem
+
 ---
 ## Acknowledgements 
