@@ -127,14 +127,6 @@ function calculateScoreForDot(dot) {
     return Math.floor((1 / parseInt($(dot).attr("shrinkage"))) * 1000);
 }
 
-function checkForDotsAndShrink(dotArray) {
-    let rNumber = Math.floor(Math.random() * dotArray.length); //chooses the random number
-    let dot = dotArray[rNumber];
-    if (dotArray.length != 0) {
-        dotArray.splice(rNumber, 1);
-        startShrink(dot, dotArray);
-    }
-}
 function onDotClick(dot, dotArray) {
     if ($(dot).attr("begun") == "true") {
         // means only the dot that is in the animation will score.
@@ -145,6 +137,16 @@ function onDotClick(dot, dotArray) {
     }
     checkNextDot(dotArray);
 }
+
+function checkForDotsAndShrink(dotArray) {
+    let rNumber = Math.floor(Math.random() * dotArray.length); //chooses the random number
+    let dot = dotArray[rNumber];
+    if (dotArray.length != 0) {
+        dotArray.splice(rNumber, 1);
+        startShrink(dot, dotArray);
+    }
+}
+
 function checkNextDot(dotArray) {
     if (dotArray.length !== 0) {
         checkForDotsAndShrink(dotArray);
