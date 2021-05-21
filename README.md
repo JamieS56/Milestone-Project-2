@@ -350,5 +350,5 @@ function checkForHighScore() {
 ---
 ## Acknowledgements 
 
-[The Impossible Quiz](https://theimpossiblequiz.io/)
-[The Impossible Game](https://www.coolmathgames.com/0-worlds-hardest-game)
+* [The Impossible Quiz](https://theimpossiblequiz.io/)
+* [The Impossible Game](https://www.coolmathgames.com/0-worlds-hardest-game)

@@ -5,16 +5,15 @@ const NO_OF_DOTS_BY_LEVEL = {
 };
 let shrinkAnimationRef;
 document.addEventListener("DOMContentLoaded", function () {
-    //cd
-    addStartButtonClickHandler();
-    // Comment
-    rulesButtonClickHandler();
+    addStartButtonClickHandler();// sets the start button's functions
+    rulesButtonClickHandler();// sets the rule button's functions
     closeRules();
+    emailButtonClickHandler()
     displayHighScore();
-    initialiseLevelClickHandlers();
-    restart();
+    initialiseLevelClickHandlers();// sets the difficulty buttons function
+    restart();// restart button's function
 });
-function initialiseLevelClickHandlers() {
+function initialiseLevelClickHandlers() {// handles all the functions of the difficulty levels.
     for (i = 0; i < 3; i++) {
         document.getElementsByClassName("difficulty-button")[i].addEventListener("click", function () {
             let difficulty = this.value;
@@ -32,6 +31,7 @@ function addStartButtonClickHandler() {
     $("#start-game-btn").click(function () {
         hide($("#game-over"));
         hide($("#rules"))
+        hide($("#email-popup"));
         // Hide start and rules button
         // Show restart and quit button
         addGreyOutClass($("#game-box"));
@@ -50,11 +50,12 @@ function noDisplay(element) {
 function display(element) {
     element.removeClass("display-none");
 }
-function rulesButtonClickHandler() {
+function rulesButtonClickHandler() {// shows the rules
     $("#rules-button").click(function () {
         if ($("#rules").hasClass("hidden")) {
             show($("#rules"));
             hide($('#difficulty-row'));
+            hide($("#email-popup"));
             addGreyOutClass($("#game-box"));
         } else {
             hide($("#rules"));
@@ -94,10 +95,10 @@ function displayHighScore() {
     }
 }
 
-function startShrink(dot, dotArray) {
+function startShrink(dot, dotArray) {// all the animation code is here.
     let dotClicked = false;
     $(dot).css("backgroundColor", "#1BE00A");
-    shrinkAnimationRef = anime({
+    shrinkAnimationRef = anime({// anime.js code
         targets: dot,
         scale: {
             value: 0,
@@ -106,12 +107,12 @@ function startShrink(dot, dotArray) {
             easing: "linear",
         },
         update: function (anim) {
-            $(dot).attr("shrinkage", parseInt(Math.floor(anim.progress)));
+            $(dot).attr("shrinkage", parseInt(Math.floor(anim.progress)));// uses anime.js's progress feature to woek out how quickly the dot is clicked.
         },
         begin: function (anim) {
             $(dot).attr("begun", anim.began);
         },
-    });
+    });// end of anime.js code
     $(dot).click(function () {
         onDotClick(dot, dotArray);
         dotClicked = true;
@@ -147,7 +148,7 @@ function checkForDotsAndShrink(dotArray) {
     }
 }
 
-function checkNextDot(dotArray) {
+function checkNextDot(dotArray) {// checks if there are any more dots left in the array and if not, ends the game.
     if (dotArray.length !== 0) {
         checkForDotsAndShrink(dotArray);
     } else {
@@ -162,7 +163,7 @@ function checkNextDot(dotArray) {
 function showDifficultySelectionUI() {
     show($("#difficulty-row"));
 }
-function setRowHeight(difficulty) {
+function setRowHeight(difficulty) {// sets the height of the row depending on the difficulty so that the dots apear round no matter the screen size.
     const noOfDots = NO_OF_DOTS_BY_LEVEL[difficulty];
     const noOfRows = Math.sqrt(noOfDots);
     newHeight = 100 / noOfRows + "%";
@@ -174,7 +175,7 @@ function generateDotsHTML(difficulty) {
     const noOfCols = Math.sqrt(noOfDots);
     let dotCounter = 1;
     let dotsHTML = "";
-    for (let row = 1; row <= noOfRows; row++) {
+    for (let row = 1; row <= noOfRows; row++) {//loops through adding html to the and loops through the number of times depending on difficulty
         dotsHTML += `<div class = "row dot-row">`;
         for (let col = 1; col <= noOfCols; col++) {
             dotsHTML += `<div id="dot-${dotCounter}" class="col dot"></div> `;
@@ -239,9 +240,28 @@ function setHighScore(currentScore) {
         $("#high-score").text(localStorage.getItem("highScore"));
     }
 }
+/*---------------------------------------------------------*/
 function restart() {
     $("#restart-game-btn").click(function () {
         shrinkAnimationRef.pause();
         $("#start-game-btn").click();
     });
+}
+
+function emailButtonClickHandler(){
+    $("#email-button").click(function () {
+        if ($("#email-popup").hasClass("hidden")) {
+            show($("#email-popup"));
+            hide($('#difficulty-row'));
+            hide($('#rules'));
+            addGreyOutClass($("#game-box"));
+        } else {
+            hide($("#email-popup"));
+            removeGreyOutClass($("#game-box"));
+        }
+    });
+
+
+
+
 }

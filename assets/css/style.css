@@ -126,7 +126,7 @@ h1 {
 /*-----------------rules---------------*/
 
 #rules {
-    position: fixed;
+
     position: absolute;
     width: 10em;
     font-weight: bold;
@@ -136,6 +136,32 @@ h1 {
     font-size: 30px;
     padding: 10px;
     font-family: "Amatic SC", cursive;
+}
+
+#email-popup{
+    position: absolute;
+    width: 10em;
+    font-weight: bold;
+    border: 1px solid black;
+    background-color: white;
+    border-radius: 1%;
+    font-size: 30px;
+    padding: 20px;
+    font-family: "Amatic SC", cursive;
+}
+
+#email-popup input{
+    margin-bottom: 10px;
+}
+#email-popup textarea{
+    margin-bottom: 10px;
+}
+#email-popup label{
+    width:60px;
+}
+
+#message-label{
+    vertical-align: top;
 }
 
 #rules h2 {
