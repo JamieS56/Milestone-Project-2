@@ -103,7 +103,7 @@ function startShrink(dot, dotArray) {// all the animation code is here.
         scale: {
             value: 0,
             duration: 1500,
-            delay: 50,
+            delay: 80,
             easing: "linear",
         },
         update: function (anim) {
@@ -113,11 +113,11 @@ function startShrink(dot, dotArray) {// all the animation code is here.
             $(dot).attr("begun", anim.began);
         },
     });// end of anime.js code
-    $(dot).click(function () {
+    $(dot).click(function () {// if dot is clicked
         onDotClick(dot, dotArray);
         dotClicked = true;
     });
-    shrinkAnimationRef.finished.then(function () {
+    shrinkAnimationRef.finished.then(function () {//if dot is not clicked
         if (dotClicked == false) {
             checkNextDot(dotArray);
         }
