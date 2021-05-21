@@ -67,11 +67,12 @@ That is why there are limited buttons as they are there only for the essentials.
 * Rules pop-up - A pop up that explains the rules when you click on the rules button.
 * Multiple difficulties - There will be multiple difficulties you can choose from, the harder the difficulty, the smaller and more dots there are.
 * High Score - The users high score will be stored in local memory so it saves in the browser  
+* Email dev - A way for the user to contact the dev with any bugs they find or features to suggest.
 
 ### Future features:
 
 * Game countdown - A countdown after difficulty has been selected to give the user time to get ready.
-* Email dev - A way for the user to contact the dev with any bugs they find or features to suggest.
+
 
 ---
 ## Technologies Used
@@ -79,6 +80,7 @@ That is why there are limited buttons as they are there only for the essentials.
 * [Bootstrap](https://getbootstrap.com/) - for general css styling.
 * [jQuery](https://jquery.com/) - for helping write the js.
 * [anime.js](https://animejs.com/) - used to create the shrinking animation.
+* [EmailJS](https://www.emailjs.com/) - used for emailing the dev feature.
 * [Google Fonts](https://fonts.google.com/) - used the fonts throughout the website.
 * [TinyPNG.com](https://tinypng.com/) - used to shrink file size of images used in ReadME file.
 * [webFormatter.com](https://webformatter.com/) - used to tidy all code.
@@ -283,6 +285,36 @@ All i needed it to do was shrink and stop, so i used the scale property and the 
 
 Just play the game and watch the dots shrink, also halfway through the game click restart and you will see the dots pause in the background.
 
+### Emailing from
+
+[Email form testing](./assets/images/testing/email-form.png)
+
+The email form is meant to make it able for the user to send a message to me with comments/ suggestions/ found bugs in the game. i have used [EmailJS](https://www.emailjs.com/) API for this as its easy to use and free up to a certain extent.
+I had no major issues getting it set up and having an email template in place. AS i am using the free version of this API I can only have 200 emails a month, Which i don't think it will get close too but will cause an error if exceeded.
+```javascript
+ window.onload = function() {
+            document.getElementById('contact-form').addEventListener('submit', function(event) {
+                event.preventDefault();
+                // generate a five digit number for the contact_number variable
+                this.contact_number.value = Math.random() * 100000 | 0;
+                // these IDs from the previous steps
+                emailjs.sendForm('service_w5ucbmd', 'template_oeaclel', this)
+                    .then(function() {
+                        console.log('SUCCESS!');
+                        $('#email-outcome').text('sent!')
+                    }, function(error) {
+                        console.log('FAILED...', error);
+                        $('#email-outcome').text('FAILED...', error);
+                    });
+            });
+        }
+```
+#### How to test:
+Click the contact us button and a form will apear. then fill out the info and a message and click send. If the message has sent correctly sent will apear underneath to inform you that it has sent. If an error has occured the error will apear there instead. This also is logged to the console.
+
+
+
+
 ## Validator testing
 
 * HTML
@@ -308,7 +340,7 @@ To run the code locally you will need to create a git hub acount, then go to my 
 
 ### High Score code:
 
-all of this code was taken from https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API/Using_the_Web_Storage_API with minor djustments to variable names for context with the game
+* All of this code was taken from https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API/Using_the_Web_Storage_API with minor djustments to variable names for context with the game
 
 ```javascript
 function storageAvailable(type) {
@@ -346,7 +378,26 @@ function checkForHighScore() {
     }
 }
 ```
+* Email form code was taken from the [EmailJS](https://www.emailjs.com/) docs
 
+```javascript
+ window.onload = function() {
+            document.getElementById('contact-form').addEventListener('submit', function(event) {
+                event.preventDefault();
+                // generate a five digit number for the contact_number variable
+                this.contact_number.value = Math.random() * 100000 | 0;
+                // these IDs from the previous steps
+                emailjs.sendForm('service_w5ucbmd', 'template_oeaclel', this)
+                    .then(function() {
+                        console.log('SUCCESS!');
+                        $('#email-outcome').text('sent!')
+                    }, function(error) {
+                        console.log('FAILED...', error);
+                        $('#email-outcome').text('FAILED...', error);
+                    });
+            });
+        }
+```
 ---
 ## Acknowledgements 
 

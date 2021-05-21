@@ -1,3 +1,5 @@
+ // all this code was coopied directly from the Emailjs website. https://www.emailjs.com/docs/tutorial/creating-contact-form/
+ 
  window.onload = function() {
             document.getElementById('contact-form').addEventListener('submit', function(event) {
                 event.preventDefault();
@@ -7,7 +9,7 @@
                 emailjs.sendForm('service_w5ucbmd', 'template_oeaclel', this)
                     .then(function() {
                         console.log('SUCCESS!');
-                        $('#email-outcome').text('success!')
+                        $('#email-outcome').text('sent!')
                     }, function(error) {
                         console.log('FAILED...', error);
                         $('#email-outcome').text('FAILED...', error);
