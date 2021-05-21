@@ -71,6 +71,7 @@
             </div>
             <div id = 'email-popup' class="hidden">
                 <form id="contact-form">
+                    
                     <div class="row">
                     <input class = 'input-field' type="hidden" name="contact_number">
                     <label>Name</label>
@@ -82,11 +83,13 @@
                      </div>
                      <div class="row">
                     <label id = 'message-label'>Message</label>                  
-                    <textarea name="message"></textarea>
+                    <textarea class = 'input-field' name="message"></textarea>
                      </div>
                      <div class="row">
-                    <input class = 'input-field' type="submit" value="Send">
+                    <input id="email-send-btn" class ="btn btn-outline-success" type="submit" value="Send">
                     </div>
+                    <button id="close-email" class="btn btn-outline-danger" type='reset'>Close</button>
+                    <p id = 'email-outcome'></p>
                 </form>
             </div>
         </div>

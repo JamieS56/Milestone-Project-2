@@ -258,8 +258,16 @@ function emailButtonClickHandler(){
         } else {
             hide($("#email-popup"));
             removeGreyOutClass($("#game-box"));
+            $('.input-field').value = ''
+
         }
     });
+    $('#close-email').click(function(){
+            hide($("#email-popup"));
+            removeGreyOutClass($("#game-box"));
+            $('.input-field').value - ''
+
+    })
 
 
 

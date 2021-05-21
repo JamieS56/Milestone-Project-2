@@ -7,8 +7,10 @@
                 emailjs.sendForm('service_w5ucbmd', 'template_oeaclel', this)
                     .then(function() {
                         console.log('SUCCESS!');
+                        $('#email-outcome').text('success!')
                     }, function(error) {
                         console.log('FAILED...', error);
+                        $('#email-outcome').text('FAILED...', error);
                     });
             });
         }
