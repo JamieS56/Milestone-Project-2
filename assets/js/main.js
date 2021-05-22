@@ -7,7 +7,6 @@ let shrinkAnimationRef;
 document.addEventListener("DOMContentLoaded", function () {
     addStartButtonClickHandler();// sets the start button's functions
     rulesButtonClickHandler();// sets the rule button's functions
-    closeRules();
     emailButtonClickHandler()
     displayHighScore();
     initialiseLevelClickHandlers();// sets the difficulty buttons function
@@ -53,6 +52,7 @@ function display(element) {
 function rulesButtonClickHandler() {// shows the rules
     $("#rules-button").click(function () {
         if ($("#rules").hasClass("hidden")) {
+            shrinkAnimationRef.pause();
             show($("#rules"));
             hide($('#difficulty-row'));
             hide($("#email-popup"));
@@ -60,7 +60,13 @@ function rulesButtonClickHandler() {// shows the rules
         } else {
             hide($("#rules"));
             removeGreyOutClass($("#game-box"));
+            shrinkAnimationRef.play();
         }
+    });
+    $("#close-rules").click(function () {
+        hide($("#rules"));
+        removeGreyOutClass($("#game-box"));
+        shrinkAnimationRef.play();
     });
 }
 //sets the score
@@ -191,12 +197,7 @@ function addGreyOutClass(greyoutTarget) {
 function removeGreyOutClass(greyoutTarget) {
     greyoutTarget.removeClass("grey-out");
 }
-function closeRules() {
-    $("#close-rules").click(function () {
-        hide($("#rules"));
-        removeGreyOutClass($("#game-box"));
-    });
-}
+
 //---------high score--------------//
 //---------------taken directly from https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API/Using_the_Web_Storage_API--------------//
 function storageAvailable(type) {
@@ -251,6 +252,7 @@ function restart() {
 function emailButtonClickHandler(){
     $("#email-button").click(function () {
         if ($("#email-popup").hasClass("hidden")) {
+            shrinkAnimationRef.pause();
             show($("#email-popup"));
             hide($('#difficulty-row'));
             hide($('#rules'));
@@ -259,13 +261,16 @@ function emailButtonClickHandler(){
             hide($("#email-popup"));
             removeGreyOutClass($("#game-box"));
             $('.input-field').value = ''
-
+            shrinkAnimationRef.play();
         }
     });
     $('#close-email').click(function(){
             hide($("#email-popup"));
             removeGreyOutClass($("#game-box"));
             $('.input-field').value - ''
+            shrinkAnimationRef.play();
+
+
 
     })
 
