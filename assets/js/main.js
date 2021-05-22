@@ -117,7 +117,7 @@ function startShrink(dot, dotArray) {// all the animation code is here.
             value: 0,
             duration: 1500,
             delay: 80,
-            easing: "linear",
+            easing: "steps",
         },
         update: function (anim) {
             $(dot).attr("shrinkage", parseInt(Math.floor(anim.progress)));// uses anime.js's progress feature to woek out how quickly the dot is clicked.
@@ -131,9 +131,9 @@ function startShrink(dot, dotArray) {// all the animation code is here.
         onDotClick(dot, dotArray);
         dotClicked = true;
     });
-    shrinkAnimationRef.finished.then(function () {//if dot is not clicked
-        if (dotClicked == false) {
-            checkNextDot(dotArray);
+    shrinkAnimationRef.finished.then(function(){// this effects bubbling. cannot swith around this with if below.
+        if (dotClicked == false ){       
+            checkNextDot(dotArray);       
         }
     });
 }
