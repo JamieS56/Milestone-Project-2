@@ -46,6 +46,7 @@ h1 {
     position: relative;
     opacity: inherit;
     align-self: center;
+    outline: 1px solid transparent;
 }
 
 .dot-row {

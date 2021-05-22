@@ -117,7 +117,7 @@ function startShrink(dot, dotArray) {// all the animation code is here.
             value: 0,
             duration: 1500,
             delay: 80,
-            easing: "steps",
+            easing: "linear",// needs to be linear
         },
         update: function (anim) {
             $(dot).attr("shrinkage", parseInt(Math.floor(anim.progress)));// uses anime.js's progress feature to woek out how quickly the dot is clicked.
