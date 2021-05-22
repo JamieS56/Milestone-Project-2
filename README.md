@@ -49,6 +49,9 @@ Overall Speed dots is for people who want to have fun and test there reaction sp
 
 * The fourth user wanted to be able to contact us.
   * I have added a contact button which lets the user fill out the form to send a message to me.
+  
+  ![test email form](./assets/images/user-stories/test-email-form.png)
+  ![test email](./assets/images/user-stories/test-email.png)
 ---
 ### Wireframes
 
