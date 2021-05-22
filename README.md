@@ -22,6 +22,7 @@ Overall Speed dots is for people who want to have fun and test there reaction sp
 * "I want a game thats easy to understand and fun to play."
 * "As a dad I want a game thats easy for my kids to play but I can also play and be challenged."
 * "I want a game that is competitive."
+* "I want to be able to contact someone incase i have any questions or issues with the game."
 
 #### Testing user Stories
 
@@ -42,9 +43,12 @@ Overall Speed dots is for people who want to have fun and test there reaction sp
     ![hard button user stories testing](./assets/images/user-stories/user-stories-hard.png)
 
 * The third user wants a game that is competative.
-  * THe high score feature realy adds a competitiveness to the game. ecause it means players can compare scores with their friends and try and beat each other.
+  * The high score feature realy adds a competitiveness to the game. ecause it means players can compare scores with their friends and try and beat each other.
 
     ![high score user stories testing](./assets/images/user-stories/user-stories-high-score.png)
+
+* The fourth user wanted to be able to contact us.
+  * I have added a contact button which lets the user fill out the form to send a message to me.
 ---
 ### Wireframes
 

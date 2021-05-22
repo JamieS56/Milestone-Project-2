@@ -3,7 +3,8 @@ const NO_OF_DOTS_BY_LEVEL = {
     medium: 16,
     hard: 25,
 };
-let shrinkAnimationRef;
+let shrinkAnimationRef ;
+
 document.addEventListener("DOMContentLoaded", function () {
     addStartButtonClickHandler();// sets the start button's functions
     rulesButtonClickHandler();// sets the rule button's functions
@@ -52,7 +53,9 @@ function display(element) {
 function rulesButtonClickHandler() {// shows the rules
     $("#rules-button").click(function () {
         if ($("#rules").hasClass("hidden")) {
-            shrinkAnimationRef.pause();
+            if ($('#game-box').attr("begun") == "true"){
+                shrinkAnimationRef.pause();
+            }
             show($("#rules"));
             hide($('#difficulty-row'));
             hide($("#email-popup"));
@@ -60,13 +63,17 @@ function rulesButtonClickHandler() {// shows the rules
         } else {
             hide($("#rules"));
             removeGreyOutClass($("#game-box"));
-            shrinkAnimationRef.play();
+            if ($('#game-box').attr("begun") == "true"){
+                shrinkAnimationRef.play();
+            }
         }
     });
     $("#close-rules").click(function () {
         hide($("#rules"));
         removeGreyOutClass($("#game-box"));
-        shrinkAnimationRef.play();
+        if ($('#game-box').attr("begun") == "true"){
+            shrinkAnimationRef.play();
+        }
     });
 }
 //sets the score
@@ -104,7 +111,7 @@ function displayHighScore() {
 function startShrink(dot, dotArray) {// all the animation code is here.
     let dotClicked = false;
     $(dot).css("backgroundColor", "#1BE00A");
-    shrinkAnimationRef = anime({// anime.js code
+    shrinkAnimationRef  = anime({// anime.js code
         targets: dot,
         scale: {
             value: 0,
@@ -117,6 +124,7 @@ function startShrink(dot, dotArray) {// all the animation code is here.
         },
         begin: function (anim) {
             $(dot).attr("begun", anim.began);
+            $('#game-box').attr('begun', true);
         },
     });// end of anime.js code
     $(dot).click(function () {// if dot is clicked
@@ -163,6 +171,7 @@ function checkNextDot(dotArray) {// checks if there are any more dots left in th
         show($("#game-over"));
         noDisplay($("#restart-game-btn"));
         display($("#start-game-btn"));
+        $('#game-box').attr('begun', 'false');
     }
 }
 // code to set difficulty of game
@@ -252,7 +261,9 @@ function restart() {
 function emailButtonClickHandler(){
     $("#email-button").click(function () {
         if ($("#email-popup").hasClass("hidden")) {
-            shrinkAnimationRef.pause();
+            if ($('#game-box').attr("begun") == "true"){
+                shrinkAnimationRef.pause();
+            }
             show($("#email-popup"));
             hide($('#difficulty-row'));
             hide($('#rules'));
@@ -261,14 +272,19 @@ function emailButtonClickHandler(){
             hide($("#email-popup"));
             removeGreyOutClass($("#game-box"));
             $('.input-field').value = ''
-            shrinkAnimationRef.play();
+            if ($('#game-box').attr("begun") == "true"){
+                shrinkAnimationRef.play();
+            }
         }
     });
     $('#close-email').click(function(){
             hide($("#email-popup"));
             removeGreyOutClass($("#game-box"));
             $('.input-field').value - ''
-            shrinkAnimationRef.play();
+            if ($('#game-box').attr("begun") == "true"){
+                shrinkAnimationRef.play();
+            }
+            
 
 
 
