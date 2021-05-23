@@ -53,7 +53,7 @@ h1 {
     height: 33%;
     opacity: inherit;
 }
-/*---------headings and buttons styling--------*/
+/*---------headings, buttons and pop-ups styling--------*/
 
 .score-row {
     display: inline-flex;
@@ -124,7 +124,7 @@ h1 {
     border: 2px solid black;
 }
 
-/*-----------------rules---------------*/
+/*-----------------rules and email form---------------*/
 
 #rules {
     position: absolute;
@@ -169,6 +169,7 @@ h1 {
     text-decoration: underline;
 }
 
+/*---------------styling for smaller screen size-----------------*/
 @media screen and (max-width: 600px) {
     body {
         font-size: 60%;
