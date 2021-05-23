@@ -166,7 +166,7 @@ function checkNextDot(dotArray) {// checks if there are any more dots left in th
     if (dotArray.length !== 0) {
         checkForDotsAndShrink(dotArray);
     } else {
-        score = getScore();
+        let score = getScore();
         setHighScore(score);
         show($("#game-over"));
         noDisplay($("#restart-game-btn"));
@@ -181,7 +181,7 @@ function showDifficultySelectionUI() {
 function setRowHeight(difficulty) {// sets the height of the row depending on the difficulty so that the dots apear round no matter the screen size.
     const noOfDots = NO_OF_DOTS_BY_LEVEL[difficulty];
     const noOfRows = Math.sqrt(noOfDots);
-    newHeight = 100 / noOfRows + "%";
+    let newHeight = 100 / noOfRows + "%";
     $(".dot-row").height(newHeight);
 }
 function generateDotsHTML(difficulty) {
@@ -271,9 +271,6 @@ function emailButtonClickHandler(){
         } else {
             hide($("#email-popup"));
             removeGreyOutClass($("#game-box"));
-            for (i = 0; i < 3; i++) {
-                 $('.input-field').value = '';
-            }    
             if ($('#game-box').attr("begun") == "true"){
                 shrinkAnimationRef.play();
             }

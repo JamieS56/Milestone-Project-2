@@ -357,11 +357,28 @@ Click the contact us button and a form will appear, then fill out the info and a
 
 ## Validator testing
 
-* HTML
+* HTML - Absolutley no problems with the HTML validator.
 
-* CSS
+  ![HTML validator](./assets/images/testing/html-validator.png)
+
+* CSS - All errors and warnings are from bootstrap all my code is fine.
+
+  ![CSS validator](./assets/images/testing/css-validator.png)
+
+* Java Script - Only warnings are from using jQuery shortcuts, but no errors.
+
+    ![JS validator](./assets/images/testing/js-validator.png)
 
 * Light House
+
+   *   Mobile
+    
+   ![mobile-lighthouse](./assets/images/testing/mobile-lighthouse.png) 
+
+    *  Desktop
+    
+    ![desktop-lighthouse](./assets/images/testing/desktop-lighthouse.png) 
+
 ---
 
 ## Deployment
