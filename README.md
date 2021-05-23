@@ -273,6 +273,8 @@ Click on rules and then close or back on the rules button. You will find that if
 
 ### Restart button
 
+![Restart button testing](./assets/images/testing/restart-testing.png)
+
 The restart button is meant to stop the game in the background so the user can select a new difficulty or the same one to restart the game.
 
 #### Bugs I had:
@@ -345,7 +347,7 @@ Just play the game and watch the dots shrink, also halfway through the game clic
 The email form is meant to make it able for the user to send a message to me with comments/ suggestions/ found bugs in the game. 
 I have used [EmailJS](https://www.emailjs.com/) API for this as its easy to use and free up to a certain extent.
 I had no major issues getting it set up and having an email template in place. As I am using the free version of this API I can only have 200 emails
- a month, which I don't think it will get close too but will cause an error if exceeded.
+ a month, which I don't think it will get close too but will cause an error if exceeded. The input boxes also clear when you close the form using any button.
 
 ```javascript
  window.onload = function() {
@@ -365,11 +367,11 @@ I had no major issues getting it set up and having an email template in place. A
             });
         }
 ```
+
 #### How to test:
+
 Click the contact us button and a form will appear, then fill out the info and a message and click send. If the message has sent correctly 
 'sent' will appear underneath to inform you that it has sent. If an error has occured the error will appear there instead. This also is logged to the console.
-
-
 
 
 ## Validator testing
@@ -475,6 +477,7 @@ function checkForHighScore() {
             });
         }
 ```
+* Code that is marked as such in the js file is also taken from [anime.js](https://anime.js/) docs.
 ---
 ## Acknowledgements 
 

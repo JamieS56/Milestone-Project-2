@@ -1,18 +1,19 @@
-const NO_OF_DOTS_BY_LEVEL = {
+const NO_OF_DOTS_BY_LEVEL = {// constant of number of dots for each level
     easy: 9,
     medium: 16,
     hard: 25,
 };
-let shrinkAnimationRef;
+let shrinkAnimationRef;// global refrence for animation code is set in startShrink function
 
-document.addEventListener("DOMContentLoaded", function () {
+document.addEventListener("DOMContentLoaded", function () { // makes sure nothing is done before the DOM is fully loaded
     addStartButtonClickHandler(); // sets the start button's functions
     rulesButtonClickHandler(); // sets the rule button's functions
-    emailButtonClickHandler();
-    displayHighScore();
+    emailButtonClickHandler(); // sets contact us button's functions
+    displayHighScore(); // handles the high score
     initialiseLevelClickHandlers(); // sets the difficulty buttons function
     restart(); // restart button's function
 });
+//-----------------------------a buunch of general functions used throughout the code to add and remove classes to divs---------------------//
 function addGreyOutClass(greyoutTarget) {
     greyoutTarget.addClass("grey-out");
 }
@@ -31,6 +32,7 @@ function noDisplay(element) {
 function display(element) {
     element.removeClass("display-none");
 }
+//--------------------------------------------------------------click handlers------------------------------------------//
 function initialiseLevelClickHandlers() {
     // handles all the functions of the difficulty levels.
     for (i = 0; i < 3; i++) {
@@ -45,39 +47,35 @@ function initialiseLevelClickHandlers() {
         });
     }
 }
-// ----------------------------------------button click handler--------------------------------------------------------//
-// When the start button gets clicked this function is called which checks if a game is currently in progress and shows up the difficulty UI.
-function addStartButtonClickHandler() {
+function addStartButtonClickHandler() {  // When the start button gets clicked this function is called which checks if a game is currently in progress and shows up the difficulty UI.
     $("#start-game-btn").click(function () {
         hide($("#game-over"));
         hide($("#rules"));
         hide($("#email-popup"));
-        // Hide start and rules button
-        // Show restart and quit button
         addGreyOutClass($("#game-box"));
         showDifficultySelectionUI();
     });
 }
 function rulesButtonClickHandler() {
     // shows the rules
-    $("#rules-button").click(function () {
+    $("#rules-button").click(function () {  // if rules is hidden it shows
         if ($("#rules").hasClass("hidden")) {
-            if ($("#game-box").attr("begun") == "true") {
+            if ($("#game-box").attr("begun") == "true") {  //pauses if there's a game in progress
                 shrinkAnimationRef.pause();
             }
             show($("#rules"));
             hide($("#difficulty-row"));
             hide($("#email-popup"));
             addGreyOutClass($("#game-box"));
-        } else {
+        } else { //if rules are already up it hides
             hide($("#rules"));
             removeGreyOutClass($("#game-box"));
             if ($("#game-box").attr("begun") == "true") {
-                shrinkAnimationRef.play();
+                shrinkAnimationRef.play(); //plays if there's a game in progress
             }
         }
     });
-    $("#close-rules").click(function () {
+    $("#close-rules").click(function () { // code for the close button on the popup
         hide($("#rules"));
         removeGreyOutClass($("#game-box"));
         if ($("#game-box").attr("begun") == "true") {
@@ -86,12 +84,12 @@ function rulesButtonClickHandler() {
     });
 }
 function restart() {
-    $("#restart-game-btn").click(function () {
+    $("#restart-game-btn").click(function () {  // the restart button just pauses the game and then acts as if the start button has been clicked again.
         shrinkAnimationRef.pause();
         $("#start-game-btn").click();
     });
 }
-function emailButtonClickHandler() {
+function emailButtonClickHandler() { // this code is very similar to the rules button click handler just swaps in contact us form for rules.
     $("#email-button").click(function () {
         if ($("#email-popup").hasClass("hidden")) {
             if ($("#game-box").attr("begun") == "true") {
@@ -117,30 +115,15 @@ function emailButtonClickHandler() {
         }
     });
 }
-//sets the score
-function setScore(score) {
+function setScore(score) {  //sets the score
     $("#score").text(score);
 }
 function getScore() {
     let score = $("#score").text();
     return score;
 }
-//this function generates the array of dots depending on the difficulty using the constant at the top of the page and difficulty put into it.
-function generateDots(difficulty) {
-    const noOfDots = NO_OF_DOTS_BY_LEVEL[difficulty];
-    let dotsArray = [];
-    for (let i = 1; i <= noOfDots; i++) {
-        dotsArray.push(`#dot-${i}`);
-    }
-    return dotsArray;
-}
-// this will run after difficulty is selected and choose which dot starts to shrink.
-function startGame(difficulty) {
-    noDisplay($("#start-game-btn"));
-    display($("#restart-game-btn"));
-    setScore(0);
-    let dotsArray = generateDots(difficulty);
-    checkForDotsAndShrink(dotsArray);
+function calculateScoreForDot(dot) {
+    return Math.floor((1 / parseInt($(dot).attr("shrinkage"))) * 1000); // calculates score using the progress of the animation in this formula.
 }
 function displayHighScore() {
     if (storageAvailable("localStorage")) {
@@ -148,45 +131,53 @@ function displayHighScore() {
         checkForHighScore();
     }
 }
-
+function generateDots(difficulty) {  //this function generates the array of dots depending on the difficulty using the constant at the top of the page and difficulty put into it.
+    const noOfDots = NO_OF_DOTS_BY_LEVEL[difficulty];
+    let dotsArray = [];
+    for (let i = 1; i <= noOfDots; i++) {
+        dotsArray.push(`#dot-${i}`);
+    }
+    return dotsArray;
+}
+function startGame(difficulty) {  // this will run after difficulty is selected and choose which dot starts to shrink.
+    noDisplay($("#start-game-btn"));
+    display($("#restart-game-btn"));
+    setScore(0);
+    let dotsArray = generateDots(difficulty);
+    checkForDotsAndShrink(dotsArray);
+}
 function startShrink(dot, dotArray) {
     // all the animation code is here.
-    let dotClicked = false;
+    let dotClicked = false; //checks if a dot hasn't been clicked so code will carry on if no dot is clicked.
     $(dot).css("backgroundColor", "#1BE00A");
-    shrinkAnimationRef = anime({
-        // anime.js code
+    shrinkAnimationRef = anime({  // anime.js code       
         targets: dot,
         scale: {
             value: 0,
             duration: 1500,
             delay: 80,
-            easing: "linear", // needs to be linear
+            easing: "linear",
         },
         update: function (anim) {
             $(dot).attr("shrinkage", parseInt(Math.floor(anim.progress))); // uses anime.js's progress feature to woek out how quickly the dot is clicked.
         },
-        begin: function (anim) {
+        begin: function (anim) { // tells us when the animation has begun
             $(dot).attr("begun", anim.began);
             $("#game-box").attr("begun", true);
         },
     }); // end of anime.js code
     $(dot).click(function () {
-        // if dot is clicked
+        // if dot is clicked       
         onDotClick(dot, dotArray);
         dotClicked = true;
     });
     shrinkAnimationRef.finished.then(function () {
-        // this effects bubbling. cannot swith around this with if below.
+        // You cannot swith around 'shrinkAnimationRef.finished.then' with if below otherwise click missfires and bubbling occurs
         if (dotClicked == false) {
             checkNextDot(dotArray);
         }
     });
 }
-
-function calculateScoreForDot(dot) {
-    return Math.floor((1 / parseInt($(dot).attr("shrinkage"))) * 1000);
-}
-
 function onDotClick(dot, dotArray) {
     if ($(dot).attr("begun") == "true") {
         // means only the dot that is in the animation will score.
