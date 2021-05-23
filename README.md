@@ -113,6 +113,7 @@ labeled with what should be entered to help the user out.
 * [Google Fonts](https://fonts.google.com/) - Used the fonts throughout the website.
 * [TinyPNG.com](https://tinypng.com/) - Used to shrink file size of images used in README file.
 * [webFormatter.com](https://webformatter.com/) - Used to tidy all code.
+* [techsini.com](http://techsini.com/multi-mockup/index.php) - Used to create mockups for README.
 
 ---
 ## Testing
@@ -428,19 +429,19 @@ Click the contact us button and a form will appear, then fill out the info and a
 
 ## Validator testing
 
-* HTML - Absolutley no problems with the HTML validator.
+* [HTML](https://validator.w3.org/nu/?doc=https%3A%2F%2Fjamies56.github.io%2FMilestone-Project-2%2F) - I used the W3 validator to validate my HTML. There was absolutley no problems with the HTML validator.
 
   ![HTML validator](./assets/images/testing/html-validator.png)
 
-* CSS - All errors and warnings are from bootstrap all my code is fine.
+* [CSS](https://jigsaw.w3.org/css-validator/validator?uri=https%3A%2F%2Fjamies56.github.io%2FMilestone-Project-2%2F&profile=css3svg&usermedium=all&warning=1&vextwarning=&lang=en#warnings) - I used the W3C jigsaw validator to run tests. All errors and warnings are from bootstrap all my code is fine.
 
   ![CSS validator](./assets/images/testing/css-validator.png)
 
-* Java Script - Only warnings are from using jQuery shortcuts, but no errors.
+* [Java Script](https://jshint.com/) - I used jsHint to run the tests. The only warnings are from using jQuery shortcuts, but no errors.
 
     ![JS validator](./assets/images/testing/js-validator.png)
 
-* Light House
+* [Light House](https://jamies56.github.io/Milestone-Project-2/) - I used the lighthouse feature in dev tools to run the tests.
 
    *   Mobile
     
