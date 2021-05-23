@@ -125,13 +125,20 @@ function getScore() {
 function calculateScoreForDot(dot) {
     return Math.floor((1 / parseInt($(dot).attr("shrinkage"))) * 1000); // calculates score using the progress of the animation in this formula.
 }
-function displayHighScore() {
+function setHighScore(currentScore) { // takes score of last played game compares it to the high score and will set it if it's needed.
+    currentScore = parseInt(currentScore);
+    if (currentScore >= localStorage.getItem("highScore")) {
+        localStorage.setItem("highScore", currentScore);
+        $("#high-score").text(localStorage.getItem("highScore"));
+    }
+}
+function displayHighScore() { // displays high score if local storage is available
     if (storageAvailable("localStorage")) {
         show($("#high-score-box"));
         checkForHighScore();
     }
 }
-function generateDots(difficulty) {  //this function generates the array of dots depending on the difficulty using the constant at the top of the page and difficulty put into it.
+function generateDots(difficulty) {  // this function generates the array of dots depending on the difficulty using the constant at the top of the page and difficulty put into it.
     const noOfDots = NO_OF_DOTS_BY_LEVEL[difficulty];
     let dotsArray = [];
     for (let i = 1; i <= noOfDots; i++) {
@@ -193,7 +200,7 @@ function checkForDotsAndShrink(dotArray) {
     let rNumber = Math.floor(Math.random() * dotArray.length); //chooses the random number
     let dot = dotArray[rNumber];
     if (dotArray.length != 0) {
-        dotArray.splice(rNumber, 1);
+        dotArray.splice(rNumber, 1); // removes dot from array
         startShrink(dot, dotArray);
     }
 }
@@ -211,15 +218,13 @@ function checkNextDot(dotArray) {
         $("#game-box").attr("begun", "false");
     }
 }
-// code to set difficulty of game
-function showDifficultySelectionUI() {
+function showDifficultySelectionUI() {// code to show the difficulty buttons
     show($("#difficulty-row"));
 }
-function setRowHeight(difficulty) {
-    // sets the height of the row depending on the difficulty so that the dots apear round no matter the screen size.
+function setRowHeight(difficulty) {// sets the height of the row depending on the difficulty so that the dots apear round no matter the screen size or how many dots are on screen.  
     const noOfDots = NO_OF_DOTS_BY_LEVEL[difficulty];
     const noOfRows = Math.sqrt(noOfDots);
-    let newHeight = 100 / noOfRows + "%";
+    let newHeight = 100 / noOfRows + "%"; // sets the height to a percentage that can be used in css
     $(".dot-row").height(newHeight);
 }
 function generateDotsHTML(difficulty) {
@@ -228,8 +233,7 @@ function generateDotsHTML(difficulty) {
     const noOfCols = Math.sqrt(noOfDots);
     let dotCounter = 1;
     let dotsHTML = "";
-    for (let row = 1; row <= noOfRows; row++) {
-        //loops through adding html to the and loops through the number of times depending on difficulty
+    for (let row = 1; row <= noOfRows; row++) {  //loops through adding html to the and loops through the number of times depending on difficulty       
         dotsHTML += `<div class = "row dot-row">`;
         for (let col = 1; col <= noOfCols; col++) {
             dotsHTML += `<div id="dot-${dotCounter}" class="col dot"></div> `;
@@ -239,9 +243,6 @@ function generateDotsHTML(difficulty) {
     }
     return dotsHTML;
 }
-
-
-//---------high score--------------//
 //---------------taken directly from https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API/Using_the_Web_Storage_API--------------//
 function storageAvailable(type) {
     var storage;
@@ -269,20 +270,12 @@ function storageAvailable(type) {
         );
     }
 }
-function checkForHighScore() {
-    if (localStorage.length === 0) {
+function checkForHighScore() { // sets high score
+    if (localStorage.length === 0) { // if no high score present it sets it to 0
         setHighScore(0);
-    } else {
+    } else { // if high score is present it sets the high score.
         let currentHighScore = localStorage.getItem("highScore");
         setHighScore(currentHighScore);
     }
 }
-function setHighScore(currentScore) {
-    currentScore = parseInt(currentScore);
-    if (currentScore >= localStorage.getItem("highScore")) {
-        localStorage.setItem("highScore", currentScore);
-        $("#high-score").text(localStorage.getItem("highScore"));
-    }
-}
 /*---------------------------------------------------------*/
-
