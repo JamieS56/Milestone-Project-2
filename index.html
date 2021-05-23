@@ -9,10 +9,8 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" />
         <link href="https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&family=Oswald&display=swap" rel="stylesheet" />
         <link href="./assets/css/style.css" rel="stylesheet" />
-        <script type="text/javascript"
-        src="https://cdn.jsdelivr.net/npm/emailjs-com@2/dist/email.min.js">
-        </script>
-        <script type="text/javascript">
+        <script src="https://cdn.jsdelivr.net/npm/emailjs-com@2/dist/email.min.js"></script>
+        <script>
             (function(){
                 emailjs.init("user_XguTXZfBFzwKyKGOt19oL");
             })();
@@ -34,7 +32,7 @@
             </label>
         </div>
         <div id="game-window" class="container">
-            <section id="game-area">
+            <div id="game-area">
                 <div id="game-box" class="container">
                     <div class="dot-row row">
                         <div id="dot-1" class="dot col"></div>
@@ -52,7 +50,7 @@
                         <div id="dot-9" class="dot col"></div>
                     </div>
                 </div>
-            </section>
+            </div>
 
             <div id="difficulty-row" class="row hidden">
                 <button class="col difficulty-button btn btn-outline-success" id="easy-button" value="easy">Easy</button>
