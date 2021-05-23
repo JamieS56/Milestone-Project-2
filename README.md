@@ -1,5 +1,5 @@
 # Speed Dots
-
+![Speed Dots Mockup](./assets/images/misc/mock-up.png)
 ## What is Speed Dots
 
 Speed dots is a game that tests the users reaction speed, on the screen you will see a number of dots that when you start the game will start

@@ -1,4 +1,4 @@
-/*-----general styling------*/
+/*-----------------------general styling----------------*/
 
 .grey-out {
     opacity: 0.7;
@@ -21,7 +21,7 @@ h1 {
     margin-top: 50px;
 }
 
-/*-----game styling------*/
+/*----------------------game styling------------------*/
 #game-window {
     display: flex;
     align-items: center;
