@@ -106,13 +106,13 @@ labeled with what should be entered to help the user out.
 ---
 ## Technologies Used
 
-* [Bootstrap](https://getbootstrap.com/) - for general css styling.
-* [jQuery](https://jquery.com/) - for helping write the js.
-* [anime.js](https://animejs.com/) - used to create the shrinking animation.
-* [EmailJS](https://www.emailjs.com/) - used for emailing the dev feature.
-* [Google Fonts](https://fonts.google.com/) - used the fonts throughout the website.
-* [TinyPNG.com](https://tinypng.com/) - used to shrink file size of images used in ReadME file.
-* [webFormatter.com](https://webformatter.com/) - used to tidy all code.
+* [Bootstrap](https://getbootstrap.com/) - Used for buton styling and general layout of everything on the page.
+* [jQuery](https://jquery.com/) - Used to help write js code.
+* [anime.js](https://animejs.com/) - Used to create the shrinking animation of the dots.
+* [EmailJS](https://www.emailjs.com/) - Used for the emailing the developer feature.
+* [Google Fonts](https://fonts.google.com/) - Used the fonts throughout the website.
+* [TinyPNG.com](https://tinypng.com/) - Used to shrink file size of images used in README file.
+* [webFormatter.com](https://webformatter.com/) - Used to tidy all code.
 
 ---
 ## Testing
@@ -123,14 +123,23 @@ labeled with what should be entered to help the user out.
 
 ![Start button testing](./assets/images/testing/start-button-2.png)
 
-The start button makes the difficulty buttons visible. This allows you to select the difficulty to start the game. The start button's display turns to 'none' as the 
-'hidden' feature made replacing the button with the restart button hard to style when 'hidden'. It then returns to a start button again and restart buttons display 
-turns to 'none' when game is finished.
+#### Inteaded function:
+
+The start button makes the difficulty buttons visible allowing you to select the difficulty to start the game. 
+
+#### Bugs I had:
+
+When hidden the start button was in the way fo the restart button making styling difficult.
+
+#### Fixes:  
+
+I used `display: none` rather than ` display: hidden`. This meant the start button didn't take up space on the screen.
 
 #### How to test:
 
 When the page is loaded click on the start button and you will see the difficulty buttons appear. You wil also find that if the rules popup is open, 
 and you click start, the rules page will close and vice versa.
+
 
 ### Difficulty buttons:
 
@@ -140,8 +149,13 @@ and you click start, the rules page will close and vice versa.
 
 ![Difficulty button testing](./assets/images/testing/difficulty-button-3.png)
 
-As you can see they all work changing the number of dots that appear, they also call a function that will start the game when clicked as  
-shown in the console by printing “game started”. Also once clicked, all difficulty buttons are hidden and not obstructing the game.
+#### Intended Function:
+
+To set the number of dots that apear in the game area. Also once clicked, all difficulty buttons are hidden and not obstructing the game.
+
+#### Bugs I had:
+
+I had no bugs when creating the difficulty buttons.
 
 #### How to test:
 
@@ -153,15 +167,23 @@ Easy | 9
 Medium | 16
 Hard | 25
 
+
 ###  Random Number Generator(RNG)
 
 ![Dot RNG testing](./assets/images/testing/rng-screen.png)
 
 ![Dot RNG testing](./assets/images/testing/rng-code.png)
 
-It all works well and selects a random dot each time you run the game.
+#### Intended Function:
+
+Select a random dot to shrink.
+
+#### Bugs I had:
+
+There where no bugs. It all works well and selects a random dot each time you run the game.
 
 #### How to test:
+
 Start the game on any difficulty and a random dot will always start shrinking and so will every dot after, it will be different every game.
 
 
@@ -170,6 +192,8 @@ Start the game on any difficulty and a random dot will always start shrinking an
 ![Score system testing](./assets/images/testing/score-screen.png)
 
 ![Score system testing](./assets/images/testing/score-code.png)
+
+#### Intended Function:
 
 The score system is how the score gets incremented each time you click on the dot, the faster you click on it the more points you get. This then gets shown in the score box.
 The score is worked out by taking the animation completion rate provided by the anime.js api and using the equation 1000/completion.
@@ -209,13 +233,17 @@ accessible throughout the js file. This also fixed the problem I was having pass
 ```
 
 #### How to test:
+
 Play the game and watch the score go up. the longer you wait for the dot to shrink the less points you will get.
+
 
 ### Dot clicking system
 
 ![Dot click testing](./assets/images/user-stories/user-stories-hard.png)
 
-The dot should disappear and next dot instantly start shrinking once the original had either disappeared or been clicked.
+#### Intended Function:
+
+The dot should disappear and the next dot should instantly start shrinking once the original has either disappeared or been clicked.
 
 #### Bugs I had:
 
@@ -244,27 +272,39 @@ function checkForDotsAndShrink(dotArray) {
 }
 ```
 
-
 #### How to test:
 
 Play the game and click the dots and it will disappear.
+
 
 ### High score system
 
 ![High score testing](./assets/images/testing/high-score.png)
 
-The high score is saved in local memory as shown on the right. The code used tests the availability of local storage and checks before displaying 
-the high score incase it isn't available. It works fully on all devices supporting local storage 
+#### Intended Function:
+
+To save the high score in local memory and compare it to the current games score and set it to the high score box.
+
+#### Bugs I had:
+
+I had no issues with the high score system.
 
 #### How to test: 
 
 Get the high score close the tab on your browser and then reopen and your high score will be saved and shown in the high score box.
 
+
 ### Rule button
 
 ![rules testing](./assets/images/user-stories/user-stories-rules.png)
 
-All it's meant to do is show a pop up on screen of the rules with a close button.
+#### Intended Function:
+
+Open and close the rules pop up.
+
+#### Bugs I had:
+
+I had no issues with the rules button.
 
 #### How to test:
 
@@ -274,6 +314,8 @@ Click on rules and then close or back on the rules button. You will find that if
 ### Restart button
 
 ![Restart button testing](./assets/images/testing/restart-testing.png)
+
+#### Intended Function:
 
 The restart button is meant to stop the game in the background so the user can select a new difficulty or the same one to restart the game.
 
@@ -314,14 +356,18 @@ function onDotClick(dot, dotArray) {
  
 Start the game then choose the difficulty and whilst the game is running, click on the restart button, do this as many times as you like.
 
+
 ### Animation
 
 ![Animation testing](./assets/images/user-stories/user-stories-medium.png)
 
+#### Intended Function:
+
+The intended function is to animate the shrinking of the dots plus control of when the animation is paused/ played.
+
 All the animation is done through [anime.js](https://animejs.com/) API. I decided to use it because creating my own animations seemed far too complex and the 
-animations on their website looked really good. All I needed it to do was shrink and stop, so I used the scale property and the pause function. 
-I also used the animation progress function as previously mentioned to help get the score. It took a little fiddling to get used to how it worked but overall 
-I had no major problems animating the dots.
+animations on their website looked really good. I used the scale property and the pause function. I also used the animation progress function as previously 
+mentioned to help get the score. It took a little fiddling to get used to how it worked but overall 
 
 #### Bugs I had:
 
@@ -335,19 +381,25 @@ On all Apple products these marks appeared as the dots shrunk. It was random on 
 I added an invisible outline to the dot class ``` outline: 1px solid transpaent; ``` because the mark was left by the outer most pixel, I know this because
  when I was testing I removed the border and the marks left where green, the color of the dot. So I just added the outline to make it the most outer pixel. 
 
-
 #### How to test:
 
 Just play the game and watch the dots shrink, also halfway through the game click the rules or contact us button and you will see the dots pause in the background.
+
 
 ### Emailing form
 
 ![Email form testing](./assets/images/testing/email-form.png)
 
+#### Intended Function:
+
 The email form is meant to make it able for the user to send a message to me with comments/ suggestions/ found bugs in the game. 
 I have used [EmailJS](https://www.emailjs.com/) API for this as its easy to use and free up to a certain extent.
-I had no major issues getting it set up and having an email template in place. As I am using the free version of this API I can only have 200 emails
- a month, which I don't think it will get close too but will cause an error if exceeded. The input boxes also clear when you close the form using any button.
+ As I am using the free version of this API I can only have 200 emails a month, which I don't think it will get close too but will cause an 
+ error if exceeded. The input boxes also clear when you close the form using any button.
+
+#### Bugs I had:
+
+ I had no major issues getting it set up and having an email template in place.
 
 ```javascript
  window.onload = function() {
