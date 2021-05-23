@@ -3,40 +3,21 @@ const NO_OF_DOTS_BY_LEVEL = {
     medium: 16,
     hard: 25,
 };
-let shrinkAnimationRef ;
+let shrinkAnimationRef;
 
 document.addEventListener("DOMContentLoaded", function () {
-    addStartButtonClickHandler();// sets the start button's functions
-    rulesButtonClickHandler();// sets the rule button's functions
+    addStartButtonClickHandler(); // sets the start button's functions
+    rulesButtonClickHandler(); // sets the rule button's functions
     emailButtonClickHandler();
     displayHighScore();
-    initialiseLevelClickHandlers();// sets the difficulty buttons function
-    restart();// restart button's function
+    initialiseLevelClickHandlers(); // sets the difficulty buttons function
+    restart(); // restart button's function
 });
-function initialiseLevelClickHandlers() {// handles all the functions of the difficulty levels.
-    for (i = 0; i < 3; i++) {
-        document.getElementsByClassName("difficulty-button")[i].addEventListener("click", function () {
-            let difficulty = this.value;
-            const dotsHTML = generateDotsHTML(difficulty);
-            document.getElementById("game-box").innerHTML = dotsHTML;
-            setRowHeight(difficulty);
-            removeGreyOutClass($("#game-box"));
-            hide($("#difficulty-row"));
-            startGame(difficulty);
-        });
-    }
+function addGreyOutClass(greyoutTarget) {
+    greyoutTarget.addClass("grey-out");
 }
-// When the start button gets clicked this function is called which checks if a game is currently in progress and shows up the difficulty UI.
-function addStartButtonClickHandler() {
-    $("#start-game-btn").click(function () {
-        hide($("#game-over"));
-        hide($("#rules"));
-        hide($("#email-popup"));
-        // Hide start and rules button
-        // Show restart and quit button
-        addGreyOutClass($("#game-box"));
-        showDifficultySelectionUI();
-    });
+function removeGreyOutClass(greyoutTarget) {
+    greyoutTarget.removeClass("grey-out");
 }
 function hide(element) {
     element.addClass("hidden");
@@ -50,20 +31,48 @@ function noDisplay(element) {
 function display(element) {
     element.removeClass("display-none");
 }
-function rulesButtonClickHandler() {// shows the rules
+function initialiseLevelClickHandlers() {
+    // handles all the functions of the difficulty levels.
+    for (i = 0; i < 3; i++) {
+        document.getElementsByClassName("difficulty-button")[i].addEventListener("click", function () {
+            let difficulty = this.value;
+            const dotsHTML = generateDotsHTML(difficulty);
+            document.getElementById("game-box").innerHTML = dotsHTML;
+            setRowHeight(difficulty);
+            removeGreyOutClass($("#game-box"));
+            hide($("#difficulty-row"));
+            startGame(difficulty);
+        });
+    }
+}
+// ----------------------------------------button click handler--------------------------------------------------------//
+// When the start button gets clicked this function is called which checks if a game is currently in progress and shows up the difficulty UI.
+function addStartButtonClickHandler() {
+    $("#start-game-btn").click(function () {
+        hide($("#game-over"));
+        hide($("#rules"));
+        hide($("#email-popup"));
+        // Hide start and rules button
+        // Show restart and quit button
+        addGreyOutClass($("#game-box"));
+        showDifficultySelectionUI();
+    });
+}
+function rulesButtonClickHandler() {
+    // shows the rules
     $("#rules-button").click(function () {
         if ($("#rules").hasClass("hidden")) {
-            if ($('#game-box').attr("begun") == "true"){
+            if ($("#game-box").attr("begun") == "true") {
                 shrinkAnimationRef.pause();
             }
             show($("#rules"));
-            hide($('#difficulty-row'));
+            hide($("#difficulty-row"));
             hide($("#email-popup"));
             addGreyOutClass($("#game-box"));
         } else {
             hide($("#rules"));
             removeGreyOutClass($("#game-box"));
-            if ($('#game-box').attr("begun") == "true"){
+            if ($("#game-box").attr("begun") == "true") {
                 shrinkAnimationRef.play();
             }
         }
@@ -71,7 +80,39 @@ function rulesButtonClickHandler() {// shows the rules
     $("#close-rules").click(function () {
         hide($("#rules"));
         removeGreyOutClass($("#game-box"));
-        if ($('#game-box').attr("begun") == "true"){
+        if ($("#game-box").attr("begun") == "true") {
+            shrinkAnimationRef.play();
+        }
+    });
+}
+function restart() {
+    $("#restart-game-btn").click(function () {
+        shrinkAnimationRef.pause();
+        $("#start-game-btn").click();
+    });
+}
+function emailButtonClickHandler() {
+    $("#email-button").click(function () {
+        if ($("#email-popup").hasClass("hidden")) {
+            if ($("#game-box").attr("begun") == "true") {
+                shrinkAnimationRef.pause();
+            }
+            show($("#email-popup"));
+            hide($("#difficulty-row"));
+            hide($("#rules"));
+            addGreyOutClass($("#game-box"));
+        } else {
+            hide($("#email-popup"));
+            removeGreyOutClass($("#game-box"));
+            if ($("#game-box").attr("begun") == "true") {
+                shrinkAnimationRef.play();
+            }
+        }
+    });
+    $("#close-email").click(function () {
+        hide($("#email-popup"));
+        removeGreyOutClass($("#game-box"));
+        if ($("#game-box").attr("begun") == "true") {
             shrinkAnimationRef.play();
         }
     });
@@ -108,32 +149,36 @@ function displayHighScore() {
     }
 }
 
-function startShrink(dot, dotArray) {// all the animation code is here.
+function startShrink(dot, dotArray) {
+    // all the animation code is here.
     let dotClicked = false;
     $(dot).css("backgroundColor", "#1BE00A");
-    shrinkAnimationRef  = anime({// anime.js code
+    shrinkAnimationRef = anime({
+        // anime.js code
         targets: dot,
         scale: {
             value: 0,
             duration: 1500,
             delay: 80,
-            easing: "linear",// needs to be linear
+            easing: "linear", // needs to be linear
         },
         update: function (anim) {
-            $(dot).attr("shrinkage", parseInt(Math.floor(anim.progress)));// uses anime.js's progress feature to woek out how quickly the dot is clicked.
+            $(dot).attr("shrinkage", parseInt(Math.floor(anim.progress))); // uses anime.js's progress feature to woek out how quickly the dot is clicked.
         },
         begin: function (anim) {
             $(dot).attr("begun", anim.began);
-            $('#game-box').attr('begun', true);
+            $("#game-box").attr("begun", true);
         },
-    });// end of anime.js code
-    $(dot).click(function () {// if dot is clicked
+    }); // end of anime.js code
+    $(dot).click(function () {
+        // if dot is clicked
         onDotClick(dot, dotArray);
         dotClicked = true;
     });
-    shrinkAnimationRef.finished.then(function(){// this effects bubbling. cannot swith around this with if below.
-        if (dotClicked == false ){       
-            checkNextDot(dotArray);       
+    shrinkAnimationRef.finished.then(function () {
+        // this effects bubbling. cannot swith around this with if below.
+        if (dotClicked == false) {
+            checkNextDot(dotArray);
         }
     });
 }
@@ -162,7 +207,8 @@ function checkForDotsAndShrink(dotArray) {
     }
 }
 
-function checkNextDot(dotArray) {// checks if there are any more dots left in the array and if not, ends the game.
+function checkNextDot(dotArray) {
+    // checks if there are any more dots left in the array and if not, ends the game.
     if (dotArray.length !== 0) {
         checkForDotsAndShrink(dotArray);
     } else {
@@ -171,14 +217,15 @@ function checkNextDot(dotArray) {// checks if there are any more dots left in th
         show($("#game-over"));
         noDisplay($("#restart-game-btn"));
         display($("#start-game-btn"));
-        $('#game-box').attr('begun', 'false');
+        $("#game-box").attr("begun", "false");
     }
 }
 // code to set difficulty of game
 function showDifficultySelectionUI() {
     show($("#difficulty-row"));
 }
-function setRowHeight(difficulty) {// sets the height of the row depending on the difficulty so that the dots apear round no matter the screen size.
+function setRowHeight(difficulty) {
+    // sets the height of the row depending on the difficulty so that the dots apear round no matter the screen size.
     const noOfDots = NO_OF_DOTS_BY_LEVEL[difficulty];
     const noOfRows = Math.sqrt(noOfDots);
     let newHeight = 100 / noOfRows + "%";
@@ -190,7 +237,8 @@ function generateDotsHTML(difficulty) {
     const noOfCols = Math.sqrt(noOfDots);
     let dotCounter = 1;
     let dotsHTML = "";
-    for (let row = 1; row <= noOfRows; row++) {//loops through adding html to the and loops through the number of times depending on difficulty
+    for (let row = 1; row <= noOfRows; row++) {
+        //loops through adding html to the and loops through the number of times depending on difficulty
         dotsHTML += `<div class = "row dot-row">`;
         for (let col = 1; col <= noOfCols; col++) {
             dotsHTML += `<div id="dot-${dotCounter}" class="col dot"></div> `;
@@ -200,12 +248,7 @@ function generateDotsHTML(difficulty) {
     }
     return dotsHTML;
 }
-function addGreyOutClass(greyoutTarget) {
-    greyoutTarget.addClass("grey-out");
-}
-function removeGreyOutClass(greyoutTarget) {
-    greyoutTarget.removeClass("grey-out");
-}
+
 
 //---------high score--------------//
 //---------------taken directly from https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API/Using_the_Web_Storage_API--------------//
@@ -251,44 +294,4 @@ function setHighScore(currentScore) {
     }
 }
 /*---------------------------------------------------------*/
-function restart() {
-    $("#restart-game-btn").click(function () {
-        shrinkAnimationRef.pause();
-        $("#start-game-btn").click();
-    });
-}
 
-function emailButtonClickHandler(){
-    $("#email-button").click(function () {
-        if ($("#email-popup").hasClass("hidden")) {
-            if ($('#game-box').attr("begun") == "true"){
-                shrinkAnimationRef.pause();
-            }
-            show($("#email-popup"));
-            hide($('#difficulty-row'));
-            hide($('#rules'));
-            addGreyOutClass($("#game-box"));
-        } else {
-            hide($("#email-popup"));
-            removeGreyOutClass($("#game-box"));
-            if ($('#game-box').attr("begun") == "true"){
-                shrinkAnimationRef.play();
-            }
-        }
-    });
-    $('#close-email').click(function(){
-            hide($("#email-popup"));
-            removeGreyOutClass($("#game-box"));
-            if ($('#game-box').attr("begun") == "true"){
-                shrinkAnimationRef.play();
-            }
-            
-
-
-
-    });
-
-
-
-
-}

@@ -4,14 +4,15 @@
 
 Speed dots is a game that tests the users reaction speed, on the screen you will see a number of dots that when you start the game will start
  individually shrinking. It is the users task to click on the dots before they disappear to get as high a score as possible. The faster you click
-  on the dots the higher the score you get. Speed Dots is meant to be simplistic and accessible to everyone
-
+  on the dots the higher the score you get. Overall Speed Dots is meant to be a simplistic, accessible game thats fun.
+ 
 ---
 ## UX
 ### Target Audience
 
 The target audience is young children, mainly 6 - 15 year olds, but anyone can play. I think this is a good target audience because children are more 
-likely to be playing games and have more free time. Overall Speed dots is for people who want to have fun and test their reaction speed. 
+likely to have free time to play games and are more likely to recomend it to their friends and then compete against them to see who gets the highest score.
+
 
 ### Goals
 
@@ -55,15 +56,31 @@ likely to be playing games and have more free time. Overall Speed dots is for pe
   * I have added a contact button which lets the user fill out the form to send a message to me.
   
   ![test email form](./assets/images/user-stories/test-email-form.png)
+
   ![test email](./assets/images/user-stories/test-email.png)
+
 ---
 ### Wireframes
 
 #### Design Choices
 
 I wanted Speed dots to have a really simplistic look, similar to The Impossible Quiz and The Impossible Game, which are both browser games 
-I used to play as a child. The simplicity of these games made it easy to pick up but difficult to master. That is why there are limited buttons as they
- are there only for the essentials.
+I used to play as a child. They were both visually apealing and easy to understand to me as a child. The simplicity of these games made it easy 
+to pick up but difficult to master, I want to take those aspects and put them into speed dots. 
+
+I have chosen to have buttons only for the essentials as to not distract from the game, having the actual dots large and in the center of the screen 
+because they are the most important thing to the user when playing.
+
+The color scheme for Speed Dots takes inspiration from The Impossible Game. It has very few colors on screen to make the things that matter (the dots) stand 
+out to the user which is why I chose red and green as the colors for the dots because they are very easy to tell apart so you can tell which dot is shrinking.
+
+I chose this font because I liked the look of it and it fitted the simplistic style of the game, like if someone had drawn it.
+
+Note: The Contact Us button was added after the wireframes were created but have followed the same design of simplicity, with the button just slotting 
+under the rules and start button as it is least vital for gameplay but still easily visible. the actual form is also simple with three input boxes all 
+labeled with what should be entered to help the user out.
+
+
 
 ![Wireframes desktop](./assets/images/wireFrames/speed-dots-wf-desktop.png)
 
@@ -319,7 +336,7 @@ I added an invisible outline to the dot class ``` outline: 1px solid transpaent;
 
 #### How to test:
 
-Just play the game and watch the dots shrink, also halfway through the game click restart and you will see the dots pause in the background.
+Just play the game and watch the dots shrink, also halfway through the game click the rules or contact us button and you will see the dots pause in the background.
 
 ### Emailing form
 

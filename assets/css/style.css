@@ -100,7 +100,6 @@ h1 {
     max-width: 250px;
     width: 40vw;
 }
-    
 
 .btn {
     font-family: "Amatic SC", cursive;
@@ -128,7 +127,6 @@ h1 {
 /*-----------------rules---------------*/
 
 #rules {
-
     position: absolute;
     width: 10em;
     font-weight: bold;
@@ -140,7 +138,7 @@ h1 {
     font-family: "Amatic SC", cursive;
 }
 
-#email-popup{
+#email-popup {
     position: absolute;
     width: 10em;
     font-weight: bold;
@@ -152,17 +150,17 @@ h1 {
     font-family: "Amatic SC", cursive;
 }
 
-#email-popup input{
+#email-popup input {
     margin-bottom: 10px;
 }
-#email-popup textarea{
+#email-popup textarea {
     margin-bottom: 10px;
 }
-#email-popup label{
-    width:60px;
+#email-popup label {
+    width: 60px;
 }
 
-#message-label{
+#message-label {
     vertical-align: top;
 }
 

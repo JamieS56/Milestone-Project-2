@@ -11,7 +11,7 @@
         <link href="./assets/css/style.css" rel="stylesheet" />
         <script src="https://cdn.jsdelivr.net/npm/emailjs-com@2/dist/email.min.js"></script>
         <script>
-            (function(){
+            (function () {
                 emailjs.init("user_XguTXZfBFzwKyKGOt19oL");
             })();
         </script>
@@ -63,31 +63,31 @@
             <div id="rules" class="hidden">
                 <h2>Speed Dots Rules!</h2>
                 <p>
-                    Speed dots is a game where you test your reaction speed. Click on the green dot as quickly as possible to score as many points as you can. The harder the difficulty the more dots you have to click and could make dissapear.
+                    Speed dots is a game where you test your reaction speed. Click on the green dot as quickly as possible to score as many points as 
+                    you can. The harder the difficulty the more dots you have to click.
                 </p>
                 <button id="close-rules" class="btn btn-outline-danger">Close</button>
             </div>
-            <div id = 'email-popup' class="hidden">
+            <div id="email-popup" class="hidden">
                 <form id="contact-form">
-                    
                     <div class="row">
-                    <input class = 'input-field' type="hidden" name="contact_number">
-                    <label>Name</label>
-                    <input class = 'input-field' type="text" name="user_name" required>
+                        <input class="input-field" type="hidden" name="contact_number" />
+                        <label>Name</label>
+                        <input class="input-field" type="text" name="user_name" required />
                     </div>
                     <div class="row">
-                    <label>Email</label>
-                    <input class = 'input-field' type="email" name="user_email" required>
-                     </div>
-                     <div class="row">
-                    <label id = 'message-label'>Message</label>                  
-                    <textarea class = 'input-field' name="message" required></textarea>
-                     </div>
-                     <div class="row">
-                    <input id="email-send-btn" class ="btn btn-outline-success" type="submit" value="Send">
+                        <label>Email</label>
+                        <input class="input-field" type="email" name="user_email" required />
                     </div>
-                    <button id="close-email" class="btn btn-outline-danger" type='reset'>Close</button>
-                    <p id = 'email-outcome'></p>
+                    <div class="row">
+                        <label id="message-label">Message</label>
+                        <textarea class="input-field" name="message" required></textarea>
+                    </div>
+                    <div class="row">
+                        <input id="email-send-btn" class="btn btn-outline-success" type="submit" value="Send" />
+                    </div>
+                    <button id="close-email" class="btn btn-outline-danger" type="reset">Close</button>
+                    <p id="email-outcome"></p>
                 </form>
             </div>
         </div>
@@ -95,11 +95,9 @@
         <div id="action-row" class="row justify-content-evenly">
             <button class="col-4 btn btn-outline-success action-btn" id="start-game-btn">Start</button>
             <button class="col-4 btn btn-outline-success action-btn display-none" id="restart-game-btn">Restart</button>
-            <button class="col-4 btn btn-primary action-btn" id="rules-button" >Rules!</button>
-            <button class="btn btn-primary action-btn" id="email-button" form = 'contact-form'  type = 'reset'>Contact us!</button>
+            <button class="col-4 btn btn-primary action-btn" id="rules-button">Rules!</button>
+            <button class="btn btn-primary action-btn" id="email-button" form="contact-form" type="reset">Contact us!</button>
         </div>
-
-         
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js" integrity="sha512-z4OUqw38qNLpn1libAN9BsoDx6nbNFio5lA6CuTp9NlK83b89hgyCVq+N5FdBJptINztxn1Z3SaKSKUS5UP60Q==" crossorigin="anonymous"></script>
