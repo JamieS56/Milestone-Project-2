@@ -304,11 +304,24 @@ animations on their website looked really good. All I needed it to do was shrink
 I also used the animation progress function as previously mentioned to help get the score. It took a little fiddling to get used to how it worked but overall 
 I had no major problems animating the dots.
 
+#### Bugs I had:
+
+[Marks on Apple phone](./assets/images/testing/apple-marks.png)
+
+On all Apple products these marks appeared as the dots shrunk. It was random on which dots created lines, it wasn't every dot and also the side on which the marks
+ appeared was random. This was only on Apple Mac and iPhones on windows and Android it was fine.
+
+#### Fixes: 
+
+I added an invisible outline to the dot class ``` outline: 1px solid transpaent; ``` because the mark was left by the outer most pixel, I know this because
+ when I was testing I removed the border and the marks left where green, the color of the dot. So I just added the outline to make it the most outer pixel. 
+
+
 #### How to test:
 
 Just play the game and watch the dots shrink, also halfway through the game click restart and you will see the dots pause in the background.
 
-### Emailing from
+### Emailing form
 
 [Email form testing](./assets/images/testing/email-form.png)
 
