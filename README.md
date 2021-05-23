@@ -306,7 +306,7 @@ I had no major problems animating the dots.
 
 #### Bugs I had:
 
-[Marks on Apple phone](./assets/images/testing/apple-marks.png)
+![Marks on Apple phone](assets/images/testing/apple-marks.png)
 
 On all Apple products these marks appeared as the dots shrunk. It was random on which dots created lines, it wasn't every dot and also the side on which the marks
  appeared was random. This was only on Apple Mac and iPhones on windows and Android it was fine.
@@ -323,7 +323,7 @@ Just play the game and watch the dots shrink, also halfway through the game clic
 
 ### Emailing form
 
-[Email form testing](./assets/images/testing/email-form.png)
+![Email form testing](./assets/images/testing/email-form.png)
 
 The email form is meant to make it able for the user to send a message to me with comments/ suggestions/ found bugs in the game. 
 I have used [EmailJS](https://www.emailjs.com/) API for this as its easy to use and free up to a certain extent.
