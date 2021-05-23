@@ -8,7 +8,7 @@ let shrinkAnimationRef ;
 document.addEventListener("DOMContentLoaded", function () {
     addStartButtonClickHandler();// sets the start button's functions
     rulesButtonClickHandler();// sets the rule button's functions
-    emailButtonClickHandler()
+    emailButtonClickHandler();
     displayHighScore();
     initialiseLevelClickHandlers();// sets the difficulty buttons function
     restart();// restart button's function
@@ -30,7 +30,7 @@ function initialiseLevelClickHandlers() {// handles all the functions of the dif
 function addStartButtonClickHandler() {
     $("#start-game-btn").click(function () {
         hide($("#game-over"));
-        hide($("#rules"))
+        hide($("#rules"));
         hide($("#email-popup"));
         // Hide start and rules button
         // Show restart and quit button
@@ -236,7 +236,7 @@ function storageAvailable(type) {
     }
 }
 function checkForHighScore() {
-    if (!localStorage.length === 0) {
+    if (localStorage.length === 0) {
         setHighScore(0);
     } else {
         let currentHighScore = localStorage.getItem("highScore");
@@ -271,7 +271,9 @@ function emailButtonClickHandler(){
         } else {
             hide($("#email-popup"));
             removeGreyOutClass($("#game-box"));
-            $('.input-field').value = ''
+            for (i = 0; i < 3; i++) {
+                 $('.input-field').value = '';
+            }    
             if ($('#game-box').attr("begun") == "true"){
                 shrinkAnimationRef.play();
             }
@@ -280,7 +282,6 @@ function emailButtonClickHandler(){
     $('#close-email').click(function(){
             hide($("#email-popup"));
             removeGreyOutClass($("#game-box"));
-            $('.input-field').value - ''
             if ($('#game-box').attr("begun") == "true"){
                 shrinkAnimationRef.play();
             }
@@ -288,7 +289,7 @@ function emailButtonClickHandler(){
 
 
 
-    })
+    });
 
 
 
