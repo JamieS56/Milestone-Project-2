@@ -27,38 +27,6 @@ likely to have free time to play games and are more likely to recomend it to the
 * "I want a game that is competitive."
 * "I want to be able to contact someone incase I have any questions or issues with the game."
 
-#### Testing user Stories
-
-* The first user was wondering how easy the game was and how fun it is. 
-  * There is a rules button that easily explains the rules and the objective of the game, the game is also really basic, only one action is 
-    required (clicking the dots) so it's easy to pick up.
-  
-    ![rules user stories testing](./assets/images/user-stories/user-stories-rules.png)
-
-* The second user wanted varying difficulties in the game for himself and his children to play.
-  * This is implemented by having multiple difficulties that change the number of dots on screen. Although you can get more points on higher levels it's 
-    harder to get the maximum amount of points. 
-    
-    ![difficulty buttons user stories testing](./assets/images/user-stories/user-stories-difficulty-buttons.png)
-
-    ![easy button user stories testing](./assets/images/user-stories/user-stories-easy.png)
-
-    ![medium button user stories testing](./assets/images/user-stories/user-stories-medium.png)
-
-    ![hard button user stories testing](./assets/images/user-stories/user-stories-hard.png)
-
-* The third user wants a game that is competitive.
-  * The high score feature really adds a competitiveness to the game, because it means players can compare scores with their friends and try and beat each other.
-
-    ![high score user stories testing](./assets/images/user-stories/user-stories-high-score.png)
-
-* The fourth user wanted to be able to contact us.
-  * I have added a contact button which lets the user fill out the form to send a message to me.
-  
-  ![test email form](./assets/images/user-stories/test-email-form.png)
-
-  ![test email](./assets/images/user-stories/test-email.png)
-
 ---
 ### Wireframes
 
@@ -117,6 +85,39 @@ labeled with what should be entered to help the user out.
 
 ---
 ## Testing
+
+#### Testing user Stories
+
+* The first user was wondering how easy the game was and how fun it is. 
+  * There is a rules button that easily explains the rules and the objective of the game, the game is also really basic, only one action is 
+    required (clicking the dots) so it's easy to pick up.
+  
+    ![rules user stories testing](./assets/images/user-stories/user-stories-rules.png)
+
+* The second user wanted varying difficulties in the game for himself and his children to play.
+  * This is implemented by having multiple difficulties that change the number of dots on screen. Although you can get more points on higher levels it's 
+    harder to get the maximum amount of points. 
+    
+    ![difficulty buttons user stories testing](./assets/images/user-stories/user-stories-difficulty-buttons.png)
+
+    ![easy button user stories testing](./assets/images/user-stories/user-stories-easy.png)
+
+    ![medium button user stories testing](./assets/images/user-stories/user-stories-medium.png)
+
+    ![hard button user stories testing](./assets/images/user-stories/user-stories-hard.png)
+
+* The third user wants a game that is competitive.
+  * The high score feature really adds a competitiveness to the game, because it means players can compare scores with their friends and try and beat each other.
+
+    ![high score user stories testing](./assets/images/user-stories/user-stories-high-score.png)
+
+* The fourth user wanted to be able to contact us.
+  * I have added a contact button which lets the user fill out the form to send a message to me.
+  
+  ![test email form](./assets/images/user-stories/test-email-form.png)
+
+  ![test email](./assets/images/user-stories/test-email.png)
+
 
 ### Start button
 
